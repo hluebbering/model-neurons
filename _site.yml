@@ -1,0 +1,6 @@
+name: "Mathematical Modeling"
+navbar:
+  title: "Mathematical Modeling"
+  left:
+    - text: "Model Neurons"
+      href: index.html
