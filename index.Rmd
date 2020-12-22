@@ -443,7 +443,7 @@ The inhibitory potential is when hyperpolarization brings about a net negative c
 
 $$
 \begin{align}
-\int^t_{-\infty}{\alpha (t-t^\prime)[c_1E(t^\prime)-c_2I(t^\prime)+P(t^\prime)]dt^\prime}\tag{7}
+\int^t_{-\infty}{\alpha} (t-t^\prime)[c_1E(t^\prime)-c_2I(t^\prime)+P(t^\prime)]dt^\prime}\tag{7}
 \end{align}
 $$
 
