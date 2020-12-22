@@ -39,7 +39,14 @@ h1.title {
   font-size:18px;
   margin: 10px;
 }
-  
+figure{
+  font-family: 'Vollkorn', serif;
+}
+
+.figure{
+  font-family: 'Vollkorn', serif;
+}
+
 h2 {
   font-family: 'Noto Serif TC', serif;
   color:#4d648d;

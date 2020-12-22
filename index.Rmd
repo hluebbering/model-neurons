@@ -32,7 +32,12 @@ library(rmarkdown)
 ```
 
 
+
+<div class="b1">
+
 **Objective.** The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired.
+
+</div>
 
 
 
@@ -52,6 +57,7 @@ Neurons use their excitable cell membranes to convey information. Each neuron ce
 ```{r}
 library(captioner)
 fig_nums <- captioner(prefix = "Figure")
+
 neur_cap <- fig_nums(name = "phase1", caption = "Neuronal communication. Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon.")
 ```
 
@@ -443,7 +449,7 @@ The inhibitory potential is when hyperpolarization brings about a net negative c
 
 $$
 \begin{align}
-\int^t_{-\infty}{\alpha} (t-t^\prime)[c_1E(t^\prime)-c_2I(t^\prime)+P(t^\prime)]dt^\prime}\tag{7}
+\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime \tag{7}
 \end{align}
 $$
 
@@ -513,7 +519,7 @@ body_cap4 <- fig_nums(name = "phase4", caption = "Axonal and Dendritic geometry.
 ```
 
 
-```{r, fig.width=7, fig.height=6, fig.show="hold", fig.align='default', out.width=250, fig.cap=body_cap4}
+```{r, fig.width=7, fig.height=6, fig.show="hold", out.width=250, fig.cap=body_cap4}
 plot(Cell07PNs[1])
 plot(Cell07PNs[1:2])
 plot(Cell07PNs[1:10])
@@ -626,7 +632,7 @@ $$
 \begin{align}
 \mathbf{E}(t+\tau) =& {\left[ 1-\int^t_{t-r}E(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &\quad {\Large{\bf \cdotp}} \; \mathcal{S}_e
-\left\{ {\int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime } \right\} , \tag{10} 
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime \right\} , \tag{10} 
 \end{align}
 $$
 
@@ -636,7 +642,7 @@ $$
 \begin{align}
 \mathbf{I}(t+\tau^\mathrm{\prime}) =& {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &\quad {\Large{\bf \cdotp}} \; \mathcal{S}_i
-\left\{ {\int^t_{-\infty}} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime } \right\} , \tag{11} 
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime  \right\} , \tag{11} 
 \end{align}
 $$
 
@@ -738,7 +744,7 @@ Now, assuming that $\alpha(t-t^{\prime})$ decays exponentially and excludes inhi
 $$
 \begin{align}
 \tau \frac{d \bar E}{dt} &= -\bar E + \left[1-\int^t_{t-r}E(t^{\prime})dt^{\prime}\right] \mathcal{S}_e 
-\left\{{\int^t_{-\infty}} e^{-\alpha(t-t^{\prime})}}\left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
+\left\{ \int^t_{-\infty} e^{-\alpha(t-t^{\prime})} \left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
 \end{align}
 $$
 
@@ -1415,9 +1421,6 @@ example4_solution <- numericalSolution(WilsonCowan2,
 
 
 
-#### Theorum 4. 
-
-**Theorem 4.** Any neural population which exhibits limit cycle activity for some class of stimulus configurations will also display simple hysteresis phenomena for some other class of stimulus configurations.
 
 
 
