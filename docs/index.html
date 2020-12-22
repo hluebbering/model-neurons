@@ -386,7 +386,9 @@ div.tocify {
 </div>
 
 
+<div class="b1">
 <p><strong>Objective.</strong> The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired.</p>
+</div>
 <hr />
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
@@ -614,7 +616,7 @@ Figure 3: Plot of the Sigmoid functions <span class="math inline">\(S_e\)</span>
 <p>The inhibitory potential is when hyperpolarization brings about a net negative charge, so the potential is further away from zero. The excitation potential occurs during the depolarization process, so the potential is closer to the excitation threshold. Here is an expression for the average level of excitation generated in the cell at time t:</p>
 <p><span class="math display">\[
 \begin{align}
-\int^t_{-\infty}{\alpha (t-t^\prime)[c_1E(t^\prime)-c_2I(t^\prime)+P(t^\prime)]dt^\prime}\tag{7}
+\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime \tag{7}
 \end{align}
 \]</span></p>
 <p>Here, we define the parameters <span class="math inline">\(c_1, c_2&gt;0\)</span> as the connection coefficients, representing the average number of excitatory and inhibitory synapses per cell. We denote <span class="math inline">\(P(t)\)</span> and <span class="math inline">\(Q(t)\)</span> as the external input of excitatory and inhibitory subgroups, respectively. The inhibitory subgroup will use similar expressions but with different coefficients and different external inputs.</p>
@@ -742,7 +744,7 @@ stimulation decay function
 </tbody>
 </table>
 <p>The different coefficients reflect the difference in axon and dendritic geometry between excitatory and inhibitory cell types. In contrast, variations in external inputs assume the existence of cell types specific to the population. We can illustrate the diversity in axon and dendritic geometry between excitatory and inhibitory cell types by drawing several neurons, as shown below.</p>
-<div class="figure">
+<div class="figure" style="text-align: center">
 <img src="index_files/figure-html/unnamed-chunk-25-1.png" alt="Figure  4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-25-2.png" alt="Figure  4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-25-3.png" alt="Figure  4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-25-4.png" alt="Figure  4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" />
 <p class="caption">
 Figure 4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types.
@@ -779,7 +781,7 @@ Figure 4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate t
 \begin{align}
 \mathbf{E}(t+\tau) =&amp; {\left[ 1-\int^t_{t-r}E(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &amp;\quad {\Large{\bf \cdotp}} \; \mathcal{S}_e
-\left\{ {\int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime } \right\} , \tag{10} 
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime \right\} , \tag{10} 
 \end{align}
 \]</span></p>
 <p>and</p>
@@ -787,7 +789,7 @@ Figure 4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate t
 \begin{align}
 \mathbf{I}(t+\tau^\mathrm{\prime}) =&amp; {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &amp;\quad {\Large{\bf \cdotp}} \; \mathcal{S}_i
-\left\{ {\int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime } \right\} , \tag{11} 
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime  \right\} , \tag{11} 
 \end{align}
 \]</span></p>
 <p>for the excitatory and inhibitory subpopulations. The parameters <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\tau^{\prime}\)</span> represent the response delays, after which cells at time <span class="math inline">\(t\)</span> will be firing.</p>
@@ -970,7 +972,7 @@ stimulation decay function
 <p><span class="math display">\[
 \begin{align}
 \tau \frac{d \bar E}{dt} &amp;= -\bar E + \left[1-\int^t_{t-r}E(t^{\prime})dt^{\prime}\right] \mathcal{S}_e 
-\left\{{\int^t_{-\infty} e^{-\alpha(t-t^{\prime})}}\left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
+\left\{ \int^t_{-\infty} e^{-\alpha(t-t^{\prime})} \left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
 \end{align}
 \]</span></p>
 <p>Now, we perform a Taylor series expansion about <span class="math inline">\(\tau=0\)</span>, which is the retention of the linear term:</p>
@@ -1499,10 +1501,6 @@ Figure 9: Phase Plane Analysis showing limit cycle trajectory in response to con
 Figure 10: <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(E(t)\)</span> for limit cycle shown in Fig. 9. The limit cycle depends on the value of <span class="math inline">\(P\)</span>, i.e. <span class="math inline">\(Q\)</span> being set equal to zero.
 </p>
 </div>
-</div>
-<div id="theorum-4." class="section level4">
-<h4>Theorum 4.</h4>
-<p><strong>Theorem 4.</strong> Any neural population which exhibits limit cycle activity for some class of stimulus configurations will also display simple hysteresis phenomena for some other class of stimulus configurations.</p>
 <hr />
 </div>
 </div>
