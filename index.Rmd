@@ -738,7 +738,7 @@ Now, assuming that $\alpha(t-t^{\prime})$ decays exponentially and excludes inhi
 $$
 \begin{align}
 \tau \frac{d \bar E}{dt} &= -\bar E + \left[1-\int^t_{t-r}E(t^{\prime})dt^{\prime}\right] \mathcal{S}_e 
-\left\{{\int^t_{-\infty} e^{-\alpha(t-t^{\prime})}}\left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
+\left\{{\int^t_{-\infty}} e^{-\alpha(t-t^{\prime})}}\left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
 \end{align}
 $$
 
