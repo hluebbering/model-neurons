@@ -636,7 +636,7 @@ $$
 \begin{align}
 \mathbf{I}(t+\tau^\mathrm{\prime}) =& {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &\quad {\Large{\bf \cdotp}} \; \mathcal{S}_i
-\left\{ {\int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime } \right\} , \tag{11} 
+\left\{ {\int^t_{-\infty}} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime } \right\} , \tag{11} 
 \end{align}
 $$
 
