@@ -646,7 +646,6 @@ $$
 \end{align}
 $$
 
-and
 
 $$
 \begin{align}

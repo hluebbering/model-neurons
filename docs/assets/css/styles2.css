@@ -14,32 +14,27 @@ h1 {
 h1.title {
   font-family: 'Noto Serif TC', serif;
   color: black;
-  font-size:22px;
-  margin: 10px;
+  font-size:26px;
 }
 .author{
   font-family: 'Noto Serif TC', serif;
   color: #f4bbff;
   font-size:14px;
-  margin: 5px;
-  margin-left: 16px;
-  padding: 2px;
+  margin: 2px;
 }
 
 .date{
   font-family: 'Noto Serif TC', serif;
   color: #f4bbff;
   font-size:14px;
-  margin: 5px;
-  margin-left: 16px;
-  padding: 2px;
+  margin: 2px;
 }
 
 .subtitle{
   font-family: 'Noto Serif TC', serif;
   color: #4d648d;
   font-size:18px;
-  margin: 10px;
+  margin: 2px;
 }
 figure{
   font-family: 'Vollkorn', serif;
@@ -52,41 +47,46 @@ figure{
 h2 {
   font-family: 'Noto Serif TC', serif;
   color:#4d648d;
-  font-size:20px;
-  margin-left: 10px;
+  font-size:24px;
 }
 h3 {
   color: #536872;
   font-family: 'Noto Serif TC', serif;
   font-size: 16px;
-  margin-left: 16px;
 }
 h4{
   color:#458B74;
   text-shadow: #9CCCB8;
   font-family: 'Noto Serif TC', serif;
   font-size: 14px;
-  margin-left: 26px;
 }
 h5 {
   color:#8FBC8F;
   text-shadow: #9CCCB8;
   font-family: 'Noto Serif TC', serif;
   font-size: 13px;
-  margin-left: 30px;
 }
 
 body {
   font-family: "Times New Roman", Times, serif;
-  margin: 14px;
+  margin: 8px;
   font-size: 14px;
   
 }
 p {
   font-size: 14px;
   color: black;
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+li {
+  font-size: 13px;
+  text-indent:0;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 
 
@@ -95,7 +95,7 @@ p {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #88d8c0;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
@@ -110,7 +110,7 @@ a {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #C1CDC1;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
@@ -122,7 +122,7 @@ a {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #8FBC8F;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
@@ -133,7 +133,7 @@ a {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #6FB099;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
@@ -144,7 +144,7 @@ a {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #EAF8EA;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
@@ -155,7 +155,7 @@ a {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #838B83;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
@@ -168,25 +168,77 @@ a {
   font-family: 'Vollkorn', serif;
   font-size: 14px;
   border-radius: 25px;
-  width: 80%;
+  width: 88%;
   background: #f9fafb;
   margin: auto;
   box-shadow: 4px 4px 4px #aaa;
   padding: 8px;
 }
 
-
-pre.sourceCode.java{
-  width: 85%;
+pre {
   background: linear-gradient(120deg, #FAFAFE,#FCFCFC, #FFFFFF);
-  box-shadow: 4px 4px 4px #aaa;
-  margin:auto;
-  color: black;
-  max-height: 400px;
-  padding: 8px;
+  border: 0;
+}
+  
+
+div.sourceCode {
+  font-family: 'Source Code Pro', monospace;
+  margin: auto;
+  font-size: 12px;
+  /*border: 1px solid #6C7B8B;*/
+  box-shadow: 1px 1px 3px 2px #aaa; 
+  margin: auto;
+  padding: 4px;
   border-radius: 5px;
+  width: 86%;
+  background: linear-gradient(120deg, #FAFAFE,#FCFCFC, #FFFFFF);
+}
+
+pre.sourceCode span.kw {
+  color: #009B7D;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+pre.sourceCode span.co {
+  color: #708090;
+}
+
+/* CODE BLOCK */
+
+
+code span.co {
+  color: #708090;
+}
+code span.kw {
+  color: #009B7D;
+  font-size: 12px;
+}
+
+code span.dt {
+  color: #a0d6b4;
+  font-family: 'Fira Code', monospace;
+}
+code span.fu {
+  color: #cf6ba9;
+  font-weight: bold;
+}
+code span.bu {
+  color: #f1a7fe;
+  font-family: 'Roboto Mono', monospace;
   
 }
+code span.dv {
+  color: #7FA789;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 12px;
+  font-weight: bold;
+  outline-color: black;
+  text-shadow: 0.25px 0.25px 0.25px white;
+  
+}
+
+
 
 .sp1 {
   font-family: 'Trocchi', sans-serif;
