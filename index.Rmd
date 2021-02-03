@@ -7,8 +7,9 @@ output:
   html_document: 
     toc: yes
     toc_float: yes
-    css: assets/css/styles2.css
-css: ./assets/css/styles2.css
+    css: 
+      - assets/css/styles.css
+      - assets/css/bootstrap.min.css
 bibliography: ./assets/citation/neuro.bib
 csl: ./assets/citation/institute-of-mathematical-statistics.csl 
 nocite: '@*'
