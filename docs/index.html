@@ -387,6 +387,8 @@ div.tocify {
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/auto-collapse.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/collapsible.js"></script>
 <p> </p>
 <div class="b1">
 <p><strong>Objective.</strong> The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired.</p>
@@ -458,7 +460,7 @@ Figure 5: Synaptic transmission. When an action potential reaches the edge of an
 <div class="b1">
 <p><span class="sp2">a.</span> <strong>Point 1.</strong> Logistic Population Dynamics</p>
 <p>The logistic growth model is commonly used in biology to model a population’s growth under density dependence. The study assumes that the resting threshold <span class="math inline">\(\theta\)</span> is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function <span class="math inline">\(\mathcal{S}(x)\)</span> is related to the distribution of synapses. Here, <span class="math inline">\(a\)</span> and <span class="math inline">\(\theta\)</span> are parameters for the sigmoid function:</p>
-<p><span class="math display">\[\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.\]</span></p>
+<p><span class="math display">\[\small \mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.\]</span></p>
 </div>
 <p> </p>
 <div class="b1">
@@ -474,12 +476,8 @@ Figure 5: Synaptic transmission. When an action potential reaches the edge of an
 <div id="the-wilson-cowan-model" class="section level3">
 <h3>The Wilson-Cowan Model</h3>
 <p>The Wilson-Cowan model represents the dynamics between the spatially confined excitatory and inhibitory subpopulations. Here, <span class="math inline">\(E(t)\)</span> and <span class="math inline">\(I(t)\)</span> represent the instantaneous discharge rate of the excitatory and inhibitory population at time <span class="math inline">\(t\)</span>, respectively. We define the variables characterizing the dynamics of a spatially localized neural population as the following.</p>
-<p><span class="math display">\[
-\begin{align}
-\mathrm{E(t)} &amp;= \text{proportion of excitatory cells firing per unit time } t \tag{1} \\
-\mathrm{I(t)} &amp;= \text{proportion of inhibitory cells firing per unit time } t \tag{2}
-\end{align}
-\]</span></p>
+<p><span class="math inline">\(\mathrm{E(t)} = \text{proportion of excitatory cells firing per unit time } t \tag{1}\)</span></p>
+<p><span class="math inline">\(\mathrm{I(t)} = \text{proportion of inhibitory cells firing per unit time } t \tag{2}\)</span></p>
 <p>Now, we have the equations <span class="math inline">\(E(t)\)</span> and <span class="math inline">\(I(t)\)</span>. We assume that the value of these functions at time <span class="math inline">\((t+\tau)\)</span> will be equal to the proportion of cells, receiving at least threshold excitement at time <span class="math inline">\(t\)</span>, that isn’t sensitive (not refractory).</p>
 <p> </p>
 <div id="neuron-assumptions" class="section level4">
@@ -623,8 +621,8 @@ Figure 3: Plot of the Sigmoid functions <span class="math inline">\(S_e\)</span>
 <p>The inhibitory potential is when hyperpolarization brings about a net negative charge, so the potential is further away from zero. The excitation potential occurs during the depolarization process, so the potential is closer to the excitation threshold. Here is an expression for the average level of excitation generated in the cell at time t:</p>
 <p><span class="math display">\[
 \begin{align}
-\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime \tag{7}
-\end{align}
+\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime
+\end{align} \tag{7}
 \]</span></p>
 <p>Here, we define the parameters <span class="math inline">\(c_1, c_2&gt;0\)</span> as the connection coefficients, representing the average number of excitatory and inhibitory synapses per cell. We denote <span class="math inline">\(P(t)\)</span> and <span class="math inline">\(Q(t)\)</span> as the external input of excitatory and inhibitory subgroups, respectively. The inhibitory subgroup will use similar expressions but with different coefficients and different external inputs.</p>
 <table class="kable_wrapper table table-striped table-condensed lightable-paper" style="width: auto !important; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -764,18 +762,20 @@ Figure 4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate t
 <h4>4. Equations for the activities E(t) and I(t)</h4>
 <p>Suppose the probability that a cell is sensitive is independent of the probability that a cell is excited above the threshold. In that case, we can define the excitatory subpopulation as the following equation:</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{align*}
 \left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right] \tag{8}
 \mathcal{S}_e(x) \delta t
-\end{align}
+\end{align*}
 \]</span></p>
 <p>We designate this correlation between excitation and sensitivity by the following expression <span class="math inline">\(\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,\mathcal{S}_e(x)}\right],\)</span> so that the previous expression becomes:</p>
 <p><span class="math display">\[
-\begin{align}
-\left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right]
-\mathcal{S}_e(x) \left\{1-\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,
-\mathcal{S}_e(x)}\right] \right \} \delta t \tag{9}
+\small
+\begin{align} 
+&amp;\left[ 1-\int^t_{t-r}E(t^\prime) \; dt^\prime \right] \\ 
+&amp;\qquad \qquad {\Large{\bf \cdotp}} \mathcal{S}_e(x) \left\{1-\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,
+\mathcal{S}_e(x)}\right] \right \} \delta t
 \end{align}
+\tag{9}
 \]</span></p>
 <p>Due to fluctuations inherent in average excitation &amp; cell thresholds, the parameter <span class="math inline">\(\gamma\)</span> is taken to be zero: <span class="math inline">\(\gamma = 0\)</span></p>
 <p> </p>
@@ -785,11 +785,11 @@ Figure 4: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate t
 <h4>5. Dynamics of a Localized Population of Neurons</h4>
 <p>It follows that the equations governing the dynamics of a localized population of neurons take the form of the following expressions:</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{align*}
 \mathbf{E}(t+\tau) =&amp; {\left[ 1-\int^t_{t-r}E(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &amp;\quad {\Large{\bf \cdotp}} \; \mathcal{S}_e
 \left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime \right\} , \tag{10} 
-\end{align}
+\end{align*}
 \]</span></p>
 <p><span class="math display">\[
 \begin{align}
@@ -1181,9 +1181,9 @@ sigmoidal response functions for inhibitory subpopulation
 \]</span></p>
 <p>We can write the equations for the nullclines corresponding to <span class="math inline">\(dE/dt=0\)</span> and <span class="math inline">\(dI/dt=0\)</span>. Since <span class="math inline">\(S_e\)</span> and <span class="math inline">\(S_i\)</span> are both sigmoidal, the functions have unique inverses. Hence, we can equate the nullclines to the following expressions:</p>
 <p><span class="math display">\[
-\begin{align}
-c_2 \mathbf{I} &amp;= c_1 \mathbf{E} + S_e^{-1}\left( \frac{E}{k_e-r_eE}\right) +P &amp;\text{for } \frac{dE}{dt}&amp;=0 \tag{14} \\
-c_3 \mathbf{E} &amp;= c_4 \mathbf{I} + S_i^{-1}\left( \frac{I}{k_i-r_iI}\right) - Q &amp;\text{for } \frac{dI}{dt}&amp;=0 \tag{15}
+\begin{align} 
+c_2 \mathbf{I} &amp;= c_1 \mathbf{E} + S_e^{-1}\left( \frac{E}{k_e-r_eE}\right) +P ,\quad \frac{dE}{dt}=0 \tag{14} \\ 
+c_3 \mathbf{E} &amp;= c_4 \mathbf{I} + S_i^{-1}\left( \frac{I}{k_i-r_iI}\right) - Q ,\quad \frac{dI}{dt}=0 \tag{15}
 \end{align}
 \]</span></p>
 <hr />

@@ -15,6 +15,10 @@ csl: ./assets/citation/institute-of-mathematical-statistics.csl
 nocite: '@*'
 ---
 
+<script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/auto-collapse.js"></script>
+
+<script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/collapsible.js"></script>
+
 
 ```{r include=FALSE}
 library(kableExtra)
@@ -169,7 +173,7 @@ The Wilson-Cowan model represents the dynamics between the spatially confined ex
 
 The logistic growth model is commonly used in biology to model a population's growth under density dependence. The study assumes that the resting threshold $\theta$ is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function $\mathcal{S}(x)$ is related to the distribution of synapses. Here, $a$ and $\theta$ are parameters for the sigmoid function:
 
-$$\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.$$
+$$\small \mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.$$
 
 </div>
 
@@ -196,12 +200,9 @@ Depending on the parameter values chosen, there may be either one, three, or fiv
 The Wilson-Cowan model represents the dynamics between the spatially confined excitatory and inhibitory subpopulations. Here, $E(t)$ and $I(t)$ represent the instantaneous discharge rate of the excitatory and inhibitory population at time $t$, respectively. We define the variables characterizing the dynamics of a spatially localized neural population as the following.
 
 
-$$
-\begin{align}
-\mathrm{E(t)} &= \text{proportion of excitatory cells firing per unit time } t \tag{1} \\
-\mathrm{I(t)} &= \text{proportion of inhibitory cells firing per unit time } t \tag{2}
-\end{align}
-$$
+$\mathrm{E(t)} = \text{proportion of excitatory cells firing per unit time } t \tag{1}$
+
+$\mathrm{I(t)} = \text{proportion of inhibitory cells firing per unit time } t \tag{2}$
 
 
 Now, we have the equations $E(t)$ and $I(t)$. We assume that the value of these functions at time $(t+\tau)$ will be equal to the proportion of cells, receiving at least threshold excitement at time $t$, that isn't sensitive (not refractory).
@@ -460,8 +461,8 @@ The inhibitory potential is when hyperpolarization brings about a net negative c
 
 $$
 \begin{align}
-\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime \tag{7}
-\end{align}
+\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime
+\end{align} \tag{7}
 $$
 
 Here, we define the parameters $c_1, c_2>0$ as the connection coefficients, representing the average number of excitatory and inhibitory synapses per cell. We denote $P(t)$ and $Q(t)$ as the external input of excitatory and inhibitory subgroups, respectively. The inhibitory subgroup will use similar expressions but with different coefficients and different external inputs. 
@@ -567,21 +568,23 @@ Suppose the probability that a cell is sensitive is independent of the probabili
 
 
 $$
-\begin{align}
+\begin{align*}
 \left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right] \tag{8}
 \mathcal{S}_e(x) \delta t
-\end{align}
+\end{align*}
 $$
 
 
 We designate this correlation between excitation and sensitivity by the following expression $\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,\mathcal{S}_e(x)}\right],$ so that the previous expression becomes:
 
 $$
-\begin{align}
-\left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right]
-\mathcal{S}_e(x) \left\{1-\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,
-\mathcal{S}_e(x)}\right] \right \} \delta t \tag{9}
+\small
+\begin{align} 
+&\left[ 1-\int^t_{t-r}E(t^\prime) \; dt^\prime \right] \\ 
+&\qquad \qquad {\Large{\bf \cdotp}} \mathcal{S}_e(x) \left\{1-\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,
+\mathcal{S}_e(x)}\right] \right \} \delta t
 \end{align}
+\tag{9}
 $$
 
 
@@ -640,11 +643,11 @@ table_cap3 <- tables("3", caption = "Defining the System's Parameters and Functi
 It follows that the equations governing the dynamics of a localized population of neurons take the form of the following expressions:
 
 $$
-\begin{align}
+\begin{align*}
 \mathbf{E}(t+\tau) =& {\left[ 1-\int^t_{t-r}E(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
 &\quad {\Large{\bf \cdotp}} \; \mathcal{S}_e
 \left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime \right\} , \tag{10} 
-\end{align}
+\end{align*}
 $$
 
 
@@ -884,12 +887,16 @@ $$
 
 We can write the equations for the nullclines corresponding to $dE/dt=0$ and $dI/dt=0$. Since $S_e$ and $S_i$ are both sigmoidal, the functions have unique inverses. Hence, we can equate the nullclines to the following expressions:
 
+
 $$
-\begin{align}
-c_2 \mathbf{I} &= c_1 \mathbf{E} + S_e^{-1}\left( \frac{E}{k_e-r_eE}\right) +P &\text{for } \frac{dE}{dt}&=0 \tag{14} \\
-c_3 \mathbf{E} &= c_4 \mathbf{I} + S_i^{-1}\left( \frac{I}{k_i-r_iI}\right) - Q &\text{for } \frac{dI}{dt}&=0 \tag{15}
+\begin{align} 
+c_2 \mathbf{I} &= c_1 \mathbf{E} + S_e^{-1}\left( \frac{E}{k_e-r_eE}\right) +P ,\quad \frac{dE}{dt}=0 \tag{14} \\ 
+c_3 \mathbf{E} &= c_4 \mathbf{I} + S_i^{-1}\left( \frac{I}{k_i-r_iI}\right) - Q ,\quad \frac{dI}{dt}=0 \tag{15}
 \end{align}
 $$
+
+
+
 
 
 ------------------------------
