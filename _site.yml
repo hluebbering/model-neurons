@@ -2,6 +2,3 @@ name: "Mathematical Modeling"
 output_dir: "docs"
 navbar:
   title: "Mathematical Modeling"
-  left:
-    - text: "Model Neurons"
-      href: index.html

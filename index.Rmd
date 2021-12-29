@@ -7,9 +7,7 @@ output:
   html_document: 
     toc: yes
     toc_float: yes
-    css: 
-      - assets/css/styles.css
-      - assets/css/bootstrap.min.css
+    css: assets/css/main3.css
 bibliography: ./assets/citation/neuro.bib
 csl: ./assets/citation/institute-of-mathematical-statistics.csl 
 nocite: '@*'
@@ -20,7 +18,7 @@ nocite: '@*'
 <script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/collapsible.js"></script>
 
 
-```{r include=FALSE}
+```{r, include=FALSE}
 library(kableExtra)
 library(phaseR)
 library(deSolve)
@@ -28,43 +26,42 @@ library(graphics)
 library(mathjaxr)
 library(pagedown)
 library(captioner)
-knitr::opts_chunk$set(echo = FALSE, out.width = 400, fig.align = "center", fig.pos = 'default', fig.show = "hold", warning = FALSE, message = FALSE)
-library(phaseR)
-library(knitr)
-options(nat.plotengine = 'plotly')
+library(latex2exp)
+library(RColorBrewer)
 library(nat)
+options(nat.plotengine = 'plotly')
+library(knitr)
 library(rmarkdown)
+
+knitr::opts_chunk$set(echo = FALSE, out.width = 400, fig.align = "center", fig.pos = 'default', fig.show = "hold", warning = FALSE, message = FALSE)
+source(file = "ColorCode.R")
+
 ```
 
 
-\ 
 
-<div class="b1">
-
-**Objective.** The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired.
-
-</div>
-
-
-
-----------------------------------------
 
 
 ## Introduction
 
-### Background. Neurons Composition and Structures 
+
+
+The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired. The following is a background summary of neuron composition and structure. 
+
+
+
+
+### Background
 
 All cells have a charge difference across their entire membrane, and this difference generates potential energy of $V$. In most cell types, the resting potential is resistant to chaos. However, in some cell types (like neurons), variations in the cell's charge distribution can lead to large membrane potential changes. Such cells are called excitatory. 
 
 Neurons use their excitable cell membranes to convey information. Each neuron cell contains a cell body called a somatic cell, a branching tree called a dendrite, and a single extension arm called an axon (Figure 1). Dendrites receive signals and integrate these signals into the body. When the incoming signals permit a response, a pulse generates in the soma's transmembrane voltage. This pulse is called an action potential, and it diffuses down the cell's axon and relays a signal to other neurons in the network.
 
-\ 
 
 ```{r}
-library(captioner)
 fig_nums <- captioner(prefix = "Figure")
 
-neur_cap <- fig_nums(name = "phase1", caption = "Neuronal communication. Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon.")
+neur_cap <- fig_nums(name = "phase1", caption = "Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon.")
 ```
 
 
@@ -72,58 +69,64 @@ neur_cap <- fig_nums(name = "phase1", caption = "Neuronal communication. Project
 knitr::include_graphics("assets/images/axon.jpg")
 ```
 
-\ 
 
-The dendrites are an essential feature in coupling synaptic inputs and managing action potentials. The branch density and patterns of the dendrites (Figure 2) correlate to the neuron's function. In addition to a dendrite's unique morphology, dendritic branching is a reoccurring process where neurons form new dendritic trees and branches, which allow them to build new synapses (Figure 3).
 
-\ 
+The dendrites are an essential feature in coupling synaptic inputs and managing action potentials. The branch density and patterns of the dendrites (Figure 2) correlate to the neuron's function. In addition to a dendrite's unique morphology, dendritic branching is a reoccurring process where neurons form new dendritic trees and branches, which allow them to build new synapses.
+
+
 
 ```{r include=FALSE}
-data("Cell07PNs")
-xdata <- data("Cell07PNs")
-head(xdata)
-
 neur_cap2 <- fig_nums(name = "phase2", caption = "A Single Neuron. Dendrites are branched extensions (red to green dots) that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites.")
 ```
 
 
-```{r, fig.width=8, fig.height=6, fig.cap= neur_cap2}
-plot(Cell07PNs[[1]], main=" ", cex=2)
+```{r}
+n = Cell07PNs[[1]]
+df <- n$d
 
-ex.cs1 <- expression(plain("red nodes: branch points"),  paste("green nodes: end points"), paste("purple node: the soma"))  
-legend(195,80, ex.cs1, pch = 24, cex = 1, pt.bg = c("indianred1", "green", "purple"), title="Type of Nodes", title.col = "honeydew3")
+x1 <- df[df$PointNo %in% branchpoints(n),]
+x2 <- df[df$PointNo %in% endpoints(n),]
+x3 <- df[df$PointNo %in% n$StartPoint, ]
+branch <- xyzmatrix(x1)
+end <- xyzmatrix(x2)
+soma <- xyzmatrix(x3)
 ```
+
+
+```{r, fig.width=8, fig.height=6, fig.cap= neur_cap2}
+plot(n, WithNodes = F, col = 'black', cex=2)
+points(branch, col = colpal2[2], pch = 19, cex = 1.35)
+points(end, col = colpal2[5], pch = 19, cex = 1.35)
+points(soma, col = colpal2[9], pch = 19, cex = 1.35)
+ex.cs1 <- expression(plain("branch points"),  paste("end points"), paste("the soma"))
+legend(195,80, ex.cs1, pch = 21, cex = 0.85, pt.bg = c(colpal2[2], colpal2[5], colpal2[9]), title="Type of Nodes", title.col = "gray25", pt.cex = 1.5)
+```
+
+
+
 
 
 ```{r}
-neur_cap3 <- fig_nums(name = "phase3", caption = "Dendrite Unique Morphology")
-```
-
-
-```{r, fig.width=8, fig.height=6, fig.show='hold', fig.cap= neur_cap3}
-library(RColorBrewer)
-jBrewColors <- brewer.pal(n=5 , name = "PuBuGn")
-
-# Multiple Neurons
-plot(Cell07PNs[[1]], WithText=TRUE, col = "navy", lwd = 1, add=F, main=" ")
-plot(Cell07PNs[2:6], col = jBrewColors, lwd = 1, add=T)
+#neur_cap3 <- fig_nums(name = "phase3", caption = "Dendrite Unique Morphology")
+# jBrewColors <- brewer.pal(n=5 , name = "PuBuGn")
+#plot(Cell07PNs[[1]], WithText=TRUE, col = "navy", lwd = 1, add=F, main=" ")
+#plot(Cell07PNs[2:6], col = jBrewColors, lwd = 1, add=T)
 ```
 
 \ 
 
-### Significance of topic. Synaptic transmission
+### Synaptic transmission
 
 
 Postsynaptic Potentials, also called gradient potentials, are changes in the membrane potential of a chemical synapse. These potentials trigger or inhibit action potentials. Chemically-gated ion channels open on postsynaptic membranes, where sodium and potassium ions diffuse in the opposite directions. Postsynaptic receptors, located at chemical synapses, open ion channels and convert chemical signals into electrical signals. The following model describes the dynamics for the potential $\mathrm{V}\left(t\right)$ between the inside of the cell and outside of the cell for the membrane current $\mathrm{I}\left(t\right)$.
 
-$$V(t) = V_\text{inside}(t) - V_\text{outside}(t)$$
-
-
 $$
-\underbrace{\mathbf{I}(t)}_{\text{total}\\ \text{energy}} = \underbrace{C\frac{d}{dt}\mathrm{V}(t)}_{\text{ganglion} \\ \text{energy} \\ \text{capacity}} + \underbrace{\mathrm{I}_i(t)}_{\text{real ion} \\ \text{flow}} 
+\begin{align}
+\mathrm{V}(t) \equiv V_\text{inside}(t) - V_\text{outside}(t), \\
+\underbrace{\mathbf{I}(t)}_{\text{total}\\ \text{energy}} \equiv \underbrace{C \frac{d}{dt}\mathrm{V}(t)}_{\text{ganglion} \\ \text{energy} \\ \text{capacity}} + \underbrace{\mathrm{I}_i(t)}_{\text{real ion} \\ \text{flow}} 
+\end{align}
 $$ 
 
-\ 
 
 
 ```{r}
@@ -131,21 +134,20 @@ neur_cap6 <- fig_nums(name = "phase6", caption = "The myelin space on the myelin
 ```
 
 
+
+
+When an action potential reaches the axon, it activates calcium channels to induce an inrush of $\mathrm{Ca}^{2+}$ across the neuron cell's membrane (Figure 4). These calcium ions cause the release of signaling molecules called neurotransmitters that disperse through the synaptic cleft and attach to receptors on a cell's dendrites. The distance between the signaling cell's axon and the postsynaptic dendrite is the synaptic cleft. Neurotransmitter receptors on postsynaptic cells are converted into ion channels. When an electrical gradient triggers these neurotransmitter receptors, the receptor channel complexes cause the target cell's membrane excitation. In order to activate a sufficient number of these excitatory receptors, the action potential is activated in the cell and transmitted down its axon to the next cell.
+
 ```{r, fig.cap = neur_cap6}
 knitr::include_graphics("assets/images/ganglion.jpg")
 ``` 
 
-
-\ 
-
-When an action potential reaches the axon, it activates calcium channels to induce an inrush of $\mathrm{Ca}^{2+}$ across the neuron cell's membrane (Figure 4). These calcium ions cause the release of signaling molecules called neurotransmitters that disperse through the synaptic cleft and attach to receptors on a cell's dendrites. The distance between the signaling cell's axon and the postsynaptic dendrite is the synaptic cleft. Neurotransmitter receptors on postsynaptic cells are converted into ion channels. When an electrical gradient triggers these neurotransmitter receptors, the receptor channel complexes cause the target cell's membrane excitation. In order to activate a sufficient number of these excitatory receptors, the action potential is activated in the cell and transmitted down its axon to the next cell.
-
 In contrast, there are receptor channel complexes with inhibitory effects, in which ions flowing through the channel help restore the system to its resting potential. The assembly of these excitatory and inhibitory signals in the cell body allows various signaling behaviors. Additional diversity is exhibited by the receptor-channels' dynamic actions, which can respond to signals at different times and for different durations. 
 
-
+Positive ion current directed from inside to outside defines a neuron's membrane current. Depending on how they affect the membrane potential, chemical synapses are either excitatory or inhibitory. The types and functions of these **excitatory and inhibitory** cells are the main topics we cover in this study. In the following, we further study these excitatory and inhibitory effects by analyzing Wilson and Cowan's dynamic, two-system equation, modeling the two neuronal populations.
 
 ```{r}
-neur_cap4 <- fig_nums(name = "phase4", caption = "Synaptic transmission. When an action potential reaches the edge of an axon, it triggers an inrush of calcium ions, causing neurotransmitters' release into the synaptic cleft. These neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, usually causing currents to flow in the form of inward sodium currents.")
+neur_cap4 <- fig_nums(name = "phase4", caption = "When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents.")
 ```
 
 ```{r, fig.cap = neur_cap4}
@@ -155,45 +157,32 @@ knitr::include_graphics("assets/images/axon2.jpg")
 
 \ 
 
-Positive ion current directed from inside to outside defines a neuron's membrane current. Depending on how they affect the membrane potential, chemical synapses are either excitatory or inhibitory. The types and functions of these **excitatory and inhibitory** cells are the main topics we cover in this study. In the following, we further study these excitatory and inhibitory effects by analyzing Wilson and Cowan's dynamic, two-system equation, modeling the two neuronal populations.
-
-
-
-#### Relevance to Audience
-
-The Wilson-Cowan model represents the dynamics between the spatially confined excitatory and inhibitory subpopulations. Here, $E(t)$ and $I(t)$ denote the excitatory and inhibitory population's instantaneous discharge rate at time $t$, respectively. 
-
-\ 
 
 ### Thesis and Preview
 
-<div class="b1">
 
-<span class="sp2">a.</span> **Point 1.** Logistic Population Dynamics
+The Wilson-Cowan model represents the dynamics between the spatially confined excitatory and inhibitory subpopulations. Here, $E(t)$ and $I(t)$ denote the excitatory and inhibitory population's instantaneous discharge rate at time $t$, respectively. 
+
+
+
+<span class="sp2">a.</span> **Logistic Population Dynamics:** The logistic growth model is commonly used in biology to model a population's growth under density dependence. The study assumes that the resting threshold $\theta$ is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function $\mathcal{S}(x)$ is related to the distribution of synapses.
+
+
+
+<span class="sp3">b.</span> **Phase Plane Analysis, Steady-State Solutions, and Limit Cycles:** Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
+
+
+
+----------------------------------------
+
+
+## Model Population Dynamics
 
 The logistic growth model is commonly used in biology to model a population's growth under density dependence. The study assumes that the resting threshold $\theta$ is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function $\mathcal{S}(x)$ is related to the distribution of synapses. Here, $a$ and $\theta$ are parameters for the sigmoid function:
 
 $$\small \mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.$$
 
-</div>
 
-
-\ 
-
-<div class="b1">
-
-<span class="sp3">b.</span> **Point 2.** Phase Plane Analysis, Steady-State Solutions, and Limit Cycles
-
-Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution's behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
-
-</div>
-
-\ 
-
-----------------------------------------
-
-
-## Point 1. Model Population Dynamics
 
 ### The Wilson-Cowan Model
 
@@ -207,21 +196,22 @@ $\mathrm{I(t)} = \text{proportion of inhibitory cells firing per unit time } t \
 
 Now, we have the equations $E(t)$ and $I(t)$. We assume that the value of these functions at time $(t+\tau)$ will be equal to the proportion of cells, receiving at least threshold excitement at time $t$, that isn't sensitive (not refractory).
 
+
+**Neuron Assumptions.** We are concerned with the behavior of the subpopulations rather than individual cells. Under the following assumptions, we may ignore random spatial interactions: 
+
+1. Assume that the cells containing the two populations are very close in space.
+2. Interconnections are arbitrary yet dense enough so that it is likely there's at least one path connecting any two cells in the population.
+3. Neural processes depend on the interaction of excitatory and inhibitory cells.
+
+
+
 \ 
 
 
-#### Neuron Assumptions
-
-**Assumptions.** We are concerned with the behavior of the subpopulations rather than individual cells. Under the following assumptions, we may ignore random spatial interactions: 
-
-1. Assume that the cells containing the two populations are very close in space 
-2. Interconnections are arbitrary yet dense enough so that it is likely there's at least one path connecting any two cells in the population 
-3. Neural processes depend on the interaction of excitatory and inhibitory cells
+### Support Material 
 
 
-### Support material. 
-
-#### 1. Proportion of Sensitive Cells in each sub population
+#### <span class="sp2">1.</span> Proportion of Sensitive Cells in a Sub-population
 
 First, the study obtained the independent expression of the proportion of sensitive cells and the proportion of cells that received at least a threshold stimulation. Relevant biologic assumptions assess when a neuron fires. Consequently, the most simple model must fulfill two **conditions**:
 
@@ -246,30 +236,94 @@ $$
 \end{align}
 $$
 
-Similar expressions are obtained for the inhibitory subpopulation.
+Similar expressions are obtained for the inhibitory subpopulation. We use the sigmoid response function to model population growth. The sigmoid, logistic growth model is commonly used in biology to model the growth of a population under density dependence. To represent neurons' nonlinear behavior, we use a sigmoid function $S(x)$, taken as characteristic of any subpopulation response function, dependent on two parameters $a$ and $\theta$:
+
+$$
+S(x) = \dfrac{1}{1 + e^{-a (x - \theta)}} \tag{5}
+$$
 
 
-#### 2. Subpopulation Response Functions
+The response function is sigmoidal if $S(x)$ monotonically increases on the interval (-$\infty$, +$\infty$), approaches the asymptotic states zero and one as $x$ approaches –$\infty$ and +$\infty$ respectively, and has one inflection point.
+
+```{r}
+neur_cap5 <- fig_nums(name = "phase5", caption = "Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: $S(x)=\\frac{1}{1+e^{-a(x-\\theta)}},$ such that $\\theta=5, a=1$.")
+```
+
+
+
+```{r, fig.cap=neur_cap5}
+sigmoid = function(x,a,b) {
+  1 / (1 + exp(-a*(x-b)))
+}
+x <- seq(-5, 5, 0.01)
+plot(x, sigmoid(x, a=1, b=1), col='#0084A1', ylab="Sigmoid Function", xlab="X")
+grid()
+
+```
+
+
+
+To see if *condition 2* is fulfilled, we need the total input to the subpopulation to be a weighed contribution:
+
+$$c_1 E(t) - c_2 I(t) + P(t)$$
+
+
+We call $S_e$ the response function, also called the input-frequency characteristic of the excitatory neurons, and correspondingly $S_i$ for the inhibitory ones. A spike can still help eliciting a new spike in a downstream neuron even a few milliseconds later. The response functions give the expected proportion of those receiving at least threshold stimulation as a function of the population's average excitation levels. The sigmoid, nonlinear functions $S_e$, and $S_i$ take the form:
+
+
+```{r NonLinFunctions}
+# nonlinear functions
+Se = function(x) {
+  aE = 1.3
+  thrE = 4
+  sigmoid(x, thrE, aE) - sigmoid(0, thrE, aE)
+}
+
+Si= function(x){
+  aI = 2
+  thrI = 3.7
+  sigmoid(x, thrI, aI) - sigmoid(0, thrI, aI)
+}
+```
+
+```{r}
+neur_cap6 <- fig_nums(name = "phase6", caption = "Plot of the Sigmoid functions $S_e$ and $S_i$ for the excitatory and inhibitory subpopulations, respectively. Parameters: $a_e = 1.3, \\theta_e=4, a_i=2, \\text{ and } \\theta_i=3.7$")
+```
+
+
+```{r, fig.cap=neur_cap6}
+y1 <- Se(x)
+y2 <- Si(x)
+## Not run: 
+plot(x, y1, type = "l", col = "#A3C893", xlab = "", ylab = "", xlim=c(-2,5), lwd=3)
+lines(x, y2, col = "#37B8CB", lwd=3)
+grid()
+legend(-1,0.8, c(TeX("$S_{excitatory}$"),TeX("$S_{inhibitory}$")), lty = 1,lwd=4, col = c("#A3C893", "#37B8CB"), box.lwd = 0)
+```
+
+
+
+
+\ 
+
+#### <span class="sp3">2.</span> Subpopulation Response Functions
 
 If all cells receive same number of excitatory and inhibitory afferents, then the subpopulation response function $S(x)$ will take the form:
 
 $$
 \begin{align}
-\mathcal{S}(x) & = \int^{x(t)}_0{D(\theta) \; d \theta} \tag{5}
+\mathcal{S}(x) & = \int^{x(t)}_0{D(\theta) \; d \theta} \tag{6}
 \end{align}
 $$
 
 
-where $D(\theta)$ characterizes the distribution of individual neural thresholds.
-
-
-In other words, we assume that all cells in a subpopulation have the same threshold $\theta$ and that there is a combination of the number of afferent synapses per cell. Suppose $C(w)$ is the synapse distribution function, and $x(t)$ is the average excitation of each synapse. In that case, we expect all cells with at least $\theta$ $x(t)$ synapses to receive sufficient excitation.
+where $D(\theta)$ characterizes the distribution of individual neural thresholds. In other words, we assume that all cells in a subpopulation have the same threshold $\theta$ and that there is a combination of the number of afferent synapses per cell. Suppose $C(w)$ is the synapse distribution function, and $x(t)$ is the average excitation of each synapse. In that case, we expect all cells with at least $\theta$ $x(t)$ synapses to receive sufficient excitation.
 
 If all cells within a subpopulation have the same threshold $\theta$, then the distribution of the number of afferent synapses per cell characterized by $C(w)$. Therefore, the subpopulation response function takes the following form:
 
 $$
 \begin{align}
-\mathcal{S}(x) & = \int^{\infty}_{0\mid x(t)}{C(w) \; d w} \tag{5a}
+\mathcal{S}(x) & = \int^{\infty}_{0\mid x(t)}{C(w) \; d w} \tag{6a}
 \end{align}
 $$
 
@@ -304,168 +358,31 @@ functions <- data.frame("functions"=
 
 
 
-
-
-
-
-
 ```{r, fig.height=4, fig.width=4, fig.show='hold'}
-knitr::kable(functions ,col.names = c(" ", " "), caption = "Defining the System's Functions") %>%
-  kable_styling(full_width = FALSE, font_size = 10) %>% 
-  row_spec(0, color = "darkslategray") %>%
-  column_spec(1, color = "white", background = spec_color(1:nrow(functions), begin=0.5, end = 0.95, option = "A", direction = -1, alpha = 0.8), popover = paste("functions:", functions$functions[1:nrow(functions)]), bold = T) %>%
-  add_header_above(c("System Functions"=2),align = "l", line = F)
+knitr::kable(functions ,col.names = c("", ""), caption = table_cap1) %>%
+  kable_styling(full_width = FALSE, font_size = 10, html_font = "Frank-Ruhl-Libre") %>% 
+  row_spec(0, color = "darkslategray", font_size = 1) %>%
+  column_spec(1, color = "white", background = spec_color(1:nrow(functions), begin=0.5, end = 0.95, option = "A", direction = -1, alpha = 0.8), popover = paste("functions:", functions$functions[1:nrow(functions)]), bold = T)
 ```
 
 
 
 
-##### Sigmoid Response Function
-
-**Population Growth Models.** The sigmoid, logistic growth model is commonly used in biology to model the growth of a population under density dependence:
-
-$$\frac{dy}{dt} = \beta y\left(1-\frac{y}{K}\right)$$
+\ 
 
 
+#### <span class="sp4">3.</span> Average Level of Excitation 
 
-```{r}
-fig_nums <- captioner(prefix = "Figure")
-body_cap <- fig_nums(name = "phase1", caption = "Logistic Growth Model. Plot of the flow field, horizontal lines at any equilibrium points, several trajectories for the case $\\beta=1$ and $K=4$.")
-```
-
-
-
-```{r, message=FALSE, fig.show='hold', out.width=270, fig.cap= body_cap}
-logistic_flowField  <- flowField(logistic,
-                                 xlim       = c(0, 12),
-                                 ylim       = c(-0.5, 4.5),
-                                 parameters = c(1, 4),
-                                 system     = "one.dim",
-                                 frac = 2,
-                                 add        = FALSE, cex.axis=0.01,
-                                 points = 14,
-                                 col = "gray50",
-                                 lwd=0.8, 
-                                 main="Flow Field and Nullclines",
-                                 cex.main=0.8
-                                 )
-grid()
-
-logistic_nullclines <- nullclines(logistic,
-                                  xlim       = c(0, 12),
-                                  ylim       = c(-1, 4.5),
-                                  parameters = c(1, 4),
-                                  col = "aquamarine3", 
-                                  lwd = 2.5,
-                                  system     = "one.dim")
-
-
-logistic_flowField  <- flowField(logistic,
-                                 xlim       = c(0, 12),
-                                 ylim       = c(-0.5, 4.5),
-                                 parameters = c(1, 4),
-                                 system     = "one.dim",
-                                 frac = 2,
-                                 add        = FALSE, 
-                                 cex.axis=0.01,
-                                 points = 14,
-                                 col = "gray75",
-                                 lwd=0.8, 
-                                 main="Trajectories for various initial points", cex.main=0.8)
-grid()
-logistic_trajectory <- trajectory(logistic,
-                                  y0         = c(0.001, 0.004, 0.04, 0.25, 1, 2),
-                                  tlim       = c(0, 12),
-                                  parameters = c(1, 4),
-                                  col="darkslateblue",
-                                  lty=1,
-                                  system     = "one.dim")
-```
-
-
-
-
-To represent neurons' nonlinear behavior, we use a sigmoid function $S(x)$, taken as characteristic of any subpopulation response function, dependent on two parameters $a$ and $\theta$:
-
-$$S(x) = 1/(1 + e^{-a (x-\theta)}) \tag{6}$$
-
-
-The response function is sigmoidal if $S(x)$ monotonically increases on the interval (-$\infty$, +$\infty$), approaches the asymptotic states zero and one as $x$ approaches –$\infty$ and +$\infty$ respectively, and has one inflection point.
-
-```{r}
-body_cap2 <- fig_nums(name = "phase2", caption = "Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: $S(x)=\\frac{1}{1+e^{-a(x-\\theta)}},$ such that $\\theta=5, a=1$. $X$ is average level of excitation in threshold units.")
-```
-
-
-
-```{r fig.cap=body_cap2}
-sigmoid = function(x,a,b) {
-  1 / (1 + exp(-a*(x-b)))
-}
-x <- seq(-5, 5, 0.01)
-plot(x, sigmoid(x, a=1, b=1), col='blue', ylab="Sigmoid Function", xlab="X")
-grid()
-
-```
-
-
-
-**Sufficient excitation.** To see if condition 2 is fulfilled, we need the total input to the subpopulation to be a weighed contribution:
-
-$$c_1 E(t) - c_2 I(t) + P(t)$$
-
-
-We call $S_e$ the response function, also called the input-frequency characteristic of the excitatory neurons, and correspondingly $S_i$ for the inhibitory ones. A spike can still help eliciting a new spike in a downstream neuron even a few milliseconds later. The response functions give the expected proportion of those receiving at least threshold stimulation as a function of the population's average excitation levels. The sigmoid, nonlinear functions $S_e$, and $S_i$ take the form:
-
-
-```{r NonLinFunctions}
-# nonlinear functions
-Se = function(x) {
-  aE = 1.3
-  thrE = 4
-  sigmoid(x, thrE, aE) - sigmoid(0, thrE, aE)
-}
-
-Si= function(x){
-  aI = 2
-  thrI = 3.7
-  sigmoid(x, thrI, aI) - sigmoid(0, thrI, aI)
-}
-```
-
-```{r}
-body_cap3 <- fig_nums(name = "phase3", caption = "Plot of the Sigmoid functions $S_e$ and $S_i$ for the excitatory and inhibitory subpopulations, respectively. Parameters: $a_e = 1.3, \\theta_e=4, a_i=2, \\text{ and } \\theta_i=3.7$")
-```
-
-
-```{r, fig.cap=body_cap3, fig.showtext=TRUE}
-library(latex2exp)
-y1 <- Se(x)
-y2 <- Si(x)
-## Not run: 
-plot(x, y1, type = "l", col = "darkblue", 
-        xlab = "", ylab = "", main = "Sigmoid Function(s)", xlim=c(-2,5), lwd=2)
-lines(x, y2, col = "darkgreen", lwd=2)
-grid()
-legend(-1,0.8, c(TeX("$S_{excitatory}$"),TeX("$S_{inhibitory}$")), lty = 1,lwd=4, col = c("darkblue", "darkgreen"), title=TeX("$S = \\frac{1}{(1 + e^{-a (x-\\theta)})}$"), box.lwd = 0)
-```
-
-
----------------------------------------------
-
-
-#### 3. Average Level of Excitation 
-
-The inhibitory potential is when hyperpolarization brings about a net negative charge, so the potential is further away from zero. The excitation potential occurs during the depolarization process, so the potential is closer to the excitation threshold. Here is an expression for the average level of excitation generated in the cell at time t:
+The inhibitory potential is when hyperpolarization brings about a net negative charge, so the potential is further away from zero. The excitation potential occurs during the depolarization process, so the potential is closer to the excitation threshold. Here is an expression for the average level of excitation generated in the cell at time $t$:
 
 
 $$
 \begin{align}
-\int^t_{-\infty} \alpha (t-t^\prime) [c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)] dt^\prime
+\int^t_{-\infty} \alpha \left(t-t^\prime \right) &\cdot \left[c_1E (t^\prime) - c_2I (t^\prime) + P(t^\prime)\right] dt^\prime
 \end{align} \tag{7}
 $$
 
-Here, we define the parameters $c_1, c_2>0$ as the connection coefficients, representing the average number of excitatory and inhibitory synapses per cell. We denote $P(t)$ and $Q(t)$ as the external input of excitatory and inhibitory subgroups, respectively. The inhibitory subgroup will use similar expressions but with different coefficients and different external inputs. 
+Here, we define the parameters $c_1, c_2 \gt 0$ as the connection coefficients, representing the average number of excitatory and inhibitory synapses per cell. We denote $P(t)$ and $Q(t)$ as the external input of excitatory and inhibitory subgroups, respectively. The inhibitory subgroup will use similar expressions but with different coefficients and different external inputs. 
 
 
  
@@ -476,7 +393,7 @@ table_cap2 <- tables("2", caption = "Defining the System's Parameters and Functi
 ```
 
 
-```{r fig.height=4, fig.width=4}
+```{r, fig.height=4, fig.width=4}
 parameters <- data.frame("parameters"= 
                            c("$\\bf c_1$",
                              "$\\bf c_2$",
@@ -506,21 +423,29 @@ functions <- data.frame("functions"=
 ```
 
 
-```{r fig.height=4, fig.width=4}
+```{r, fig.height=4, fig.width=4}
 knitr::kables(list(kbl(parameters,col.names = c(" ", " "), booktabs = T,linesep = "", escape = F) %>%
-  kable_styling(full_width = FALSE, font_size = 10, wraptable_width = 1) %>% 
+  kable_styling(full_width = FALSE, font_size = 10, wraptable_width = 1, 
+                html_font = "Frank-Ruhl-Libre", bootstrap_options = c("hover")) %>% 
   row_spec(0, color = "hotpink") %>%
-    column_spec(1, color = "white", background = spec_color(mtcars$mpg[1:nrow(parameters)], begin = .2 ,end = 0.7), popover = paste("parameters:", parameters$parameters[1:nrow(parameters)])) %>%
+    column_spec(1, color = "white", background = spec_color(mtcars$mpg[1:nrow(parameters)], begin = 0.1 ,end = 0.7), popover = paste("parameters:", parameters$parameters[1:nrow(parameters)])) %>%
   add_header_above(c("System Parameters" = 2), align = "l", line = F),
   
   kbl(functions ,col.names = c(" ", " "), booktabs = T, linesep = "") %>%
-    kable_styling(full_width = FALSE, font_size = 10, wraptable_width = 1) %>% 
+    kable_styling(full_width = FALSE, font_size = 10, wraptable_width = 1,
+                  html_font = "Frank-Ruhl-Libre", bootstrap_options = c("hover")) %>% 
     row_spec(0, color = "darkslategray") %>%
-    column_spec(1, color = "white", background = spec_color(1:nrow(functions), begin=0.5, end = 0.95, option = "A", direction = -1, alpha = 0.8), popover = paste("functions:", functions$functions[1:nrow(functions)]), bold = T) %>%
-    add_header_above(c("System Functions"=2),align = "l", line = F)), caption = "Defining the System's Parameters and Functions") %>%
-  kable_styling(c("striped", "condensed"), full_width = F, position = "c", repeat_header_continued = T, latex_options = "striped") %>%
+    column_spec(1, color = "white", background = spec_color(mtcars$mpg[5:nrow(functions)], begin = .7 ,end = .9), 
+                popover = paste("functions:", 
+                                functions$functions[1:nrow(functions)]), bold = T) %>% 
+    add_header_above(c("System Functions"=2),align = "l", line = F)), 
+  caption = table_cap2) %>%
+  kable_styling(c("striped", "condensed"), full_width = F, position = "c", 
+                repeat_header_continued = T, latex_options = "striped") %>%
   kable_paper(full_width = F)
+
 ```
+
 
 
 The different coefficients reflect the difference in axon and dendritic geometry between excitatory and inhibitory cell types. In contrast, variations in external inputs assume the existence of cell types specific to the population. We can illustrate the diversity in axon and dendritic geometry between excitatory and inhibitory cell types by drawing several neurons, as shown below.
@@ -558,10 +483,12 @@ si <- function(x){
 
 
 
----------------------
+\ 
 
 
-#### 4. Equations for the activities E(t) and I(t)
+
+
+#### <span class="sp5">4.</span> Equations for the activities E(t) and I(t)
 
 
 Suppose the probability that a cell is sensitive is independent of the probability that a cell is excited above the threshold. In that case, we can define the excitatory subpopulation as the following equation:
@@ -569,8 +496,9 @@ Suppose the probability that a cell is sensitive is independent of the probabili
 
 $$
 \begin{align*}
-\left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right] \tag{8}
+\left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right]
 \mathcal{S}_e(x) \delta t
+\tag{8}
 \end{align*}
 $$
 
@@ -580,15 +508,16 @@ We designate this correlation between excitation and sensitivity by the followin
 $$
 \small
 \begin{align} 
-&\left[ 1-\int^t_{t-r}E(t^\prime) \; dt^\prime \right] \\ 
-&\qquad \qquad {\Large{\bf \cdotp}} \mathcal{S}_e(x) \left\{1-\gamma \left[{\int^t_{t-r}E(t^\prime) \; dt^\prime,
-\mathcal{S}_e(x)}\right] \right \} \delta t
+\left[ 1-\int^t_{t-r}E(t^\prime) \; dt^\prime \right] & \\ 
+\cdot  \, \mathcal{S}_e(x) & 
+\left\{1-\gamma \left[{\int^t_{t-r}E(t^\prime) dt^\prime, \,
+{\tiny\mathcal{S}_e(x)}}\right] \right \} \delta t
 \end{align}
 \tag{9}
 $$
 
 
-Due to fluctuations inherent in average excitation & cell thresholds, the parameter $\gamma$ is taken to be zero: $\gamma = 0$
+Due to fluctuations inherent in average excitation & cell thresholds, the parameter $\gamma$ is taken to be zero: $\gamma = 0$.
 
 
 
@@ -636,26 +565,30 @@ table_cap3 <- tables("3", caption = "Defining the System's Parameters and Functi
 
 
 
----------------------------------------------
+\ 
 
-#### 5. Dynamics of a Localized Population of Neurons
+
+#### <span class="sp6">5.</span> Dynamics of a Localized Population of Neurons
 
 It follows that the equations governing the dynamics of a localized population of neurons take the form of the following expressions:
 
 $$
+\small
 \begin{align*}
-\mathbf{E}(t+\tau) =& {\left[ 1-\int^t_{t-r}E(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
-&\quad {\Large{\bf \cdotp}} \; \mathcal{S}_e
-\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] \mathrm{d}t^\prime \right\} , \tag{10} 
+\mathbf{E}(t+\tau) \equiv& {\left[ 1-\int^t_{t-r}E(t^\prime) \, dt^\prime \right ]} \\
+& \cdot \, \mathcal{S}_e
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] dt^\prime \right\}, 
+\tag{10} 
 \end{align*}
 $$
 
 
 $$
+\small
 \begin{align}
-\mathbf{I}(t+\tau^\mathrm{\prime}) =& {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; \mathrm{d}t^\prime \right ]} \\
-&\quad {\Large{\bf \cdotp}} \; \mathcal{S}_i
-\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] \mathrm{d}t^\prime  \right\} , \tag{11} 
+\mathbf{I}(t+\tau^\mathrm{\prime}) \equiv& {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; dt^\prime \right ]} \\
+& \cdot \, \mathcal{S}_i
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] dt^\prime  \right\} , \tag{11} 
 \end{align}
 $$
 
@@ -734,19 +667,20 @@ knitr::kables(list(kbl(parameters,col.names = c(" ", " "), booktabs = T,linesep 
 
 
 
-----------------
+\ 
 
 
 
 
-#### 6. Time Coarse Graining
+#### <span class="sp7">6.</span> Time Coarse Graining
 
 We are interested in the coarse-grained transitory behavior of the neural activity. Coarse-grained modeling aims to simulate the behavior of complex systems using simplified representations. In the above equation, we can get rid of the integral and multiply the stimulus by a constant describing the length of time influence. Consider the following application of time course-graining of equation E(t):
 
 $$
+\small
 \begin{align}
 \mathbf{E}(t+\tau) =& {\left[ 1-r\bar E(t)\right ]} \\
-&\quad {\Large{\bf \cdotp}} \; \mathcal{S}_e
+&\quad \cdot \, \mathcal{S}_e
 \left[ {kc_1 \bar E - c_2 k \bar I + kP(t)} \right] , 
 \end{align}
 $$
@@ -755,8 +689,10 @@ $$
 Now, assuming that $\alpha(t-t^{\prime})$ decays exponentially and excludes inhibitory interactions, we extend the equation to the lowest term in $\tau$:
 
 $$
+\small
 \begin{align}
-\tau \frac{d \bar E}{dt} &= -\bar E + \left[1-\int^t_{t-r}E(t^{\prime})dt^{\prime}\right] \mathcal{S}_e 
+\tau \frac{d \bar E}{dt} \equiv& -\bar E + \left[1-\int^t_{t-r}E(t^{\prime})dt^{\prime}\right] \\
+& \cdot \mathcal{S}_e
 \left\{ \int^t_{-\infty} e^{-\alpha(t-t^{\prime})} \left[c_1E(t^\prime) + P(t^\prime)\right]dt^\prime \right\}
 \end{align}
 $$
@@ -766,8 +702,9 @@ Now, we perform a Taylor series expansion about $\tau=0$, which is the retention
 
 
 $$
+\small
 \begin{align}
-\tau \frac{d \bar E}{dt} &= -\bar E + (1-r \bar E) \mathcal{S}_e \left[{k c_1 \bar E - c_2k\bar{I}+kP(t)} \right]
+\tau \frac{d \bar E}{dt} \equiv& -\bar E + (1-r \bar E) \mathcal{S}_e \left[{k c_1 \bar E - c_2k\bar{I}+kP(t)} \right]
 \end{align}
 $$
 
@@ -775,10 +712,16 @@ $$
 
 We can say that the activity at time $d + dt$ depends on the simultaneous satisfaction of conditions (1) and (2):
 
-$$ E(t + dt) = \left(1- rE\left(t\right)\right)\, S_e \, \left(kc_1 E\left(t\right) - kc_2 I\left(t\right) + kP\left(t\right)\right) $$,
+$$ 
+\small
+E(t + dt) = \left(1- rE\left(t\right)\right) S_e  \left(kc_1 E\left(t\right) - kc_2 I\left(t\right) + kP\left(t\right)\right).
+$$
 
 
 For physiological significant values of $\alpha$ and $r$, the course grained equations are valid.
+
+
+---------------------------------------------------------------
 
 
 
@@ -786,10 +729,12 @@ For physiological significant values of $\alpha$ and $r$, the course grained equ
  
 After the above reductions and assumptions, turning the original system in differential form and suitably rescaling $S_e$ and $S_i$, we reach a coupled, nonlinear, differential equation for the excitatory and inhibitory populations' firing rates.
 
-$$\tau_e \frac{dE}{dt} = -E + (k_e - r_e E) \, S_e(c_1 E - c_2 I + P)$$
-
-
-$$\tau_i \frac{dI}{dt} = -I + (k_i - r_i I) \, S_i(c_3 E - c_4 I + Q),$$
+$$
+\begin{align}
+\tau_e \frac{dE}{dt} = -E + (k_e - r_e E)  S_e (c_1 E - c_2 I + P) \\
+\tau_i \frac{dI}{dt} = -I + (k_i - r_i I)  S_i (c_3 E - c_4 I + Q),
+\end{align}
+$$
 
 
 where we define $\tau_e$ and $\tau_i$ as the time constants, $k_e$ and $k_i$ as the non-dimensional constants, $r_e$ and $r_i$ as the constants describing the length of the refractory periods, $S_e$ and $S_i$ as sigmoid functions representing the nonlinearity of the interactions, $c_{1,2,3,4}$ as the parameters representing the strength of the excitatory to inhibitory interactions, and $P$ and $Q$ as the external inputs to the excitatory and inhibitory populations respectively. 
@@ -865,11 +810,7 @@ knitr::kables(list(kbl(parameters,col.names = c(" ", " "), booktabs = T,linesep 
 ```
 
 
-
-
-
----------------------------------------------
-
+\ 
 
 
 
@@ -902,15 +843,15 @@ $$
 ------------------------------
 
 
-## Point 2. Phase Plane Analysis, Steady-State Solutions, and Limit Cycles
+## Phase Plane Analysis, Steady-State Solutions, and Limit Cycles
 
 
-Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations.
+Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution's behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
 
 
 ### Defining the Parameters
 
-**Defining Parameters.** Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution's behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. Here, $a$ and $\theta$ are parameters for the sigmoid function:
+Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution's behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. Here, $a$ and $\theta$ are parameters for the sigmoid function:
 
 $$\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.$$
 
@@ -1076,14 +1017,16 @@ example4_nullclines <- nullclines(WilsonCowan,
 Another use of nullclines becomes evident; the locations where $x$- and $y$-nullclines intersect are the equilibrium points.
 
 
-### Support Material. Theorums 
+### Support Material 
 
 
-#### Theorum 1. 
 
 To determine the maximum slope of the curve $I$ as a function of $E$, we set a condition that the slope of Equation 14 at the inflection point of $S_e^{-1}$ is positive. The slope of the isoclinic line at this point is defined as follows:
 
-$$\left(\frac{c_1}{c_2}-\frac{9}{a_ec_2}\right)$$
+$$
+\left(\frac{c_1}{c_2}-\frac{9}{a_ec_2}\right)
+$$
+
 
 **Theorem 1.** A stimulus configuration is defined as any choice of constant values for P and Q. If 
 
@@ -1136,10 +1079,9 @@ vanDerPol_stability_6 <- findEquilibrium(WilsonCowan, y0 = c(0.049,0.1))
 We can see that the system has three steady-state solutions, thus satisfying Theorem 1. The phase plane diagram exhibits a stable fixed point at (x,y) = $(0.0285, 0.0644)$, an unstable saddle at (x,y) = $(0.0558, 0.1438)$, and a stable fixed point at (x,y) = $(0.2408, 0.4555)$. Therefore, we can always choose between $P$ and $Q$, so there are three intersection points. The physiologic significance of Theorem 1 illustrates that $1/a_e$, where $a_e$ is the excitatory sigmoid response parameter, directly relates to the variance of the distribution of thresholds or synaptic connections. 
 
 
-----------------------------------------
+\ 
 
 
-#### Theorum 2. 
 
 **Theorem 2.** Let the parameters of a neural population satisfy the following condition:
 
@@ -1245,10 +1187,8 @@ The physiological significance of Theorem 2 shows that $c_2$ and $c_3$ measure t
 
 
 
----------------
+\ 
 
-
-#### Theorum 3. 
 
 There is another type of transitory behavior exhibited by our model: a limit cycle. If there is only one steady-state solution, and if the steady-state solution is unstable, a limit cycle will occur. We can use linear stability to show an adequate, but not required, condition for such a steady state's instability:
 
@@ -1258,10 +1198,7 @@ c_1a_e \gt c_4 a_i + 18 \tag{18}
 \end{align}
 $$
 
-The above conditions come from the instability requirements of the limit cycle. We can explain that in terms of periodic behavior, the interaction with the excitatory population is significantly greater than the interaction with the inhibitory population.
-
-
-For some selected P and Q, there is a condition such that there is a single steady-state point where the values of $E$ and $I$ are close to the response function's inflection point, resulting in the following conditions:
+The above conditions come from the instability requirements of the limit cycle. We can explain that in terms of periodic behavior, the interaction with the excitatory population is significantly greater than the interaction with the inhibitory population. For some selected $P$ and $Q$, there is a condition such that there is a single steady-state point where the values of $E$ and $I$ are close to the response function's inflection point, resulting in the following conditions:
 
 $$
 \begin{align} 
@@ -1398,9 +1335,9 @@ grid()
 
 The phase plane analysis illustrates a bounded steady-state solution that is classified as unstable; this is a typical feature of a limit cycle. The solution's oscillating behavior, shown in Figure 10, follows typical limit cycle behavior:
 
-<span class="lp6">i.</span> Trajectories near the equilibrium point are pushed further away from the equilibrium.
+<span class="lp6">i. </span> Trajectories near the equilibrium point are pushed further away from the equilibrium.
 
-<span class="lp6">ii.</span> Trajectories far from the equilibrium point move closer toward the equilibrium.
+<span class="lp6">ii. </span> Trajectories far from the equilibrium point move closer toward the equilibrium.
 
 
 
