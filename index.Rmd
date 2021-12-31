@@ -53,15 +53,13 @@ The Wilson-Cowan model depicts a neuron population composed of an excitatory and
 
 ### Background
 
-All cells have a charge difference across their entire membrane, and this difference generates potential energy of $V$. In most cell types, the resting potential is resistant to chaos. However, in some cell types (like neurons), variations in the cell's charge distribution can lead to large membrane potential changes. Such cells are called excitatory. 
-
-Neurons use their excitable cell membranes to convey information. Each neuron cell contains a cell body called a somatic cell, a branching tree called a dendrite, and a single extension arm called an axon (Figure 1). Dendrites receive signals and integrate these signals into the body. When the incoming signals permit a response, a pulse generates in the soma's transmembrane voltage. This pulse is called an action potential, and it diffuses down the cell's axon and relays a signal to other neurons in the network.
+All cells have a charge difference across their entire membrane, and this difference generates potential energy of $V$. In most cell types, the resting potential is resistant to chaos. However, in some cell types (like neurons), variations in the cell's charge distribution can lead to large membrane potential changes. Such cells are called excitatory. Neurons use their excitable cell membranes to convey information. Each neuron cell contains a cell body called a somatic cell, a branching tree called a dendrite, and a single extension arm called an axon (Figure 1). Dendrites receive signals and integrate these signals into the body. When the incoming signals permit a response, a pulse generates in the soma's transmembrane voltage. This pulse is called an action potential, and it diffuses down the cell's axon and relays a signal to other neurons in the network.
 
 
 ```{r}
 fig_nums <- captioner(prefix = "Figure")
 
-neur_cap <- fig_nums(name = "phase1", caption = "Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon.")
+neur_cap <- fig_nums(name = "neur_cap", caption = "Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon.")
 ```
 
 
@@ -76,7 +74,7 @@ The dendrites are an essential feature in coupling synaptic inputs and managing 
 
 
 ```{r include=FALSE}
-neur_cap2 <- fig_nums(name = "phase2", caption = "A Single Neuron. Dendrites are branched extensions that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites.")
+neur_cap2 <- fig_nums(name = "neur_cap2", caption = "A Single Neuron. Dendrites are branched extensions that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites.")
 ```
 
 
@@ -113,7 +111,7 @@ legend(195,80, ex.cs1, pch = 21, cex = 0.85, pt.bg = c(colpal2[2], colpal2[5], c
 #plot(Cell07PNs[2:6], col = jBrewColors, lwd = 1, add=T)
 ```
 
-\ 
+
 
 ### Synaptic transmission
 
@@ -130,7 +128,7 @@ $$
 
 
 ```{r}
-neur_cap6 <- fig_nums(name = "phase6", caption = "The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside.")
+neur_cap6 <- fig_nums(name = "neur_cap6", caption = "The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside.")
 ```
 
 
@@ -147,7 +145,7 @@ In contrast, there are receptor channel complexes with inhibitory effects, in wh
 Positive ion current directed from inside to outside defines a neuron's membrane current. Depending on how they affect the membrane potential, chemical synapses are either excitatory or inhibitory. The types and functions of these **excitatory and inhibitory** cells are the main topics we cover in this study. In the following, we further study these excitatory and inhibitory effects by analyzing Wilson and Cowan's dynamic, two-system equation, modeling the two neuronal populations.
 
 ```{r}
-neur_cap4 <- fig_nums(name = "phase4", caption = "When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents.")
+neur_cap4 <- fig_nums(name = "neur_cap4", caption = "When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents.")
 ```
 
 ```{r, fig.cap = neur_cap4}
@@ -212,7 +210,6 @@ Now, we have the equations $E(t)$ and $I(t)$. We assume that the value of these 
 
 ### Support Material 
 
-
 #### <span class="sp2">1.</span> Proportion of Sensitive Cells in a Sub-population
 
 First, the study obtained the independent expression of the proportion of sensitive cells and the proportion of cells that received at least a threshold stimulation. Relevant biologic assumptions assess when a neuron fires. Consequently, the most simple model must fulfill two **conditions**:
@@ -248,7 +245,7 @@ $$
 The response function is sigmoidal if $S(x)$ monotonically increases on the interval (-$\infty$, +$\infty$), approaches the asymptotic states zero and one as $x$ approaches –$\infty$ and +$\infty$ respectively, and has one inflection point.
 
 ```{r}
-neur_cap5 <- fig_nums(name = "phase5", caption = "Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: $S(x)=\\frac{1}{1+e^{-a(x-\\theta)}},$ such that $\\theta=5, a=1$.")
+neur_cap5 <- fig_nums(name = "neur_cap5", caption = "Sigmoid Subpopulation Response Function, with $\\theta=5$ and $a=1$.")
 ```
 
 
@@ -289,7 +286,7 @@ Si= function(x){
 ```
 
 ```{r}
-neur_cap6 <- fig_nums(name = "phase6", caption = "Plot of the Sigmoid functions $S_e$ and $S_i$ for the excitatory and inhibitory subpopulations, respectively. Parameters: $a_e = 1.3, \\theta_e=4, a_i=2, \\text{ and } \\theta_i=3.7$")
+neur_cap6 <- fig_nums(name = "neur_cap6", caption = "Plot of the Sigmoid functions $S_e$ and $S_i$ for the excitatory and inhibitory subpopulations, respectively.")
 ```
 
 
@@ -333,15 +330,6 @@ $$
 The study assumes that the resting threshold $\theta$ is the same for all cells in the population. Hence, it holds that the sigmoid response function is related to the distribution of synapses.
 
 
-\ 
-
-
-```{r}
-tables <- captioner(prefix = "Table", levels = 2)
-table_cap1 <- tables("1", caption = "System Functions")
-```
-
-
 ```{r}
 functions <- data.frame("functions"= 
                           c("$\\bf \\mathcal{S}(x)$",
@@ -355,24 +343,6 @@ functions <- data.frame("functions"=
                             "distribution of individual neural thresholds",
                             "distribution of the number of afferent synapses per cell"))
 ```
-
-
-
-
-
-```{r, fig.height=4, fig.width=4, fig.show='hold'}
-knitr::kable(functions, col.names = c("", "")) %>%
-  kable_styling(full_width = FALSE, font_size = 10, html_font = "Frank-Ruhl-Libre", 
-                bootstrap_options=c("striped", "hover")) %>% 
-  row_spec(0, color = "darkslategray", font_size = 1) %>%
-  column_spec(1, color = "white", 
-              background = c(colpal2[2], colpal2[3], colpal2[4], colpal2[5]), 
-              popover = paste("function:", functions$functions), bold = T) %>%
-  kable_paper() %>%
-  add_header_above(header = c("Table 1.1: Defining the System Functions" = 2), align = "l", line = F, font_size = 11)
-
-```
-
 
 
 
@@ -391,14 +361,6 @@ $$
 $$
 
 Here, we define the parameters $c_1, c_2 \gt 0$ as the connection coefficients, representing the average number of excitatory and inhibitory synapses per cell. We denote $P(t)$ and $Q(t)$ as the external input of excitatory and inhibitory subgroups, respectively. The inhibitory subgroup will use similar expressions but with different coefficients and different external inputs. 
-
-
- 
-
-
-```{r}
-table_cap2 <- tables("2", caption = "Defining the System's Parameters and Functions")
-```
 
 
 ```{r, fig.height=4, fig.width=4}
@@ -429,26 +391,36 @@ knitr::kable(parameters,col.names = c("", ""), escape = F) %>%
   column_spec(1, color = "white", 
               background = c(colpal2[2], colpal2[3], colpal2[4], colpal2[5], 
                              colpal2[6], colpal2[7])) %>%
-  add_header_above(c("Table 1.2: Defining the System Parameters" = 2), 
+  add_header_above(c("Table 1.1: Defining the System Parameters" = 2), 
                    align = "l", line = T)  %>%
   kable_paper()
 ```
 
 
+\ 
 
 The different coefficients reflect the difference in axon and dendritic geometry between excitatory and inhibitory cell types. In contrast, variations in external inputs assume the existence of cell types specific to the population. We can illustrate the diversity in axon and dendritic geometry between excitatory and inhibitory cell types by drawing several neurons, as shown below.
 
 
 ```{r}
-body_cap4 <- fig_nums(name = "phase4", caption = "Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types.")
+body_cap4 <- fig_nums(name = "body_cap4", caption = "Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types.")
 ```
 
 
 ```{r, fig.width=7, fig.height=6, fig.show="hold", out.width=250, fig.cap=body_cap4}
-plot(Cell07PNs[1])
-plot(Cell07PNs[1:2])
-plot(Cell07PNs[1:10])
-plot(Cell07PNs[1:20])
+plot(Cell07PNs[1], col = colpal2[2], lwd=1.5)
+plot(Cell07PNs[1:2], col = c(colpal2[2], colpal2[3]), lwd=1.5)
+plot(Cell07PNs[1:10], col = c(colpal2[2], colpal2[3], colpal2[4],
+                              colpal2[5], colpal2[6], colpal2[7],
+                              colpal2[8], colpal2[9],colpal2[10],
+                              colpal2[11]), lwd=1.5)
+plot(Cell07PNs[1:20], col = c(colpal2[2], colpal2[3], colpal2[4],
+                              colpal2[5], colpal2[6], colpal2[7],
+                              colpal2[8], colpal2[9],colpal2[10],
+                              colpal2[11], colpal2[12], colpal2[13],
+                              colpal2[14], colpal2[15],colpal2[16],
+                              colpal2[17], colpal2[18], colpal2[19],
+                              colpal2[20], colpal2[1]), lwd=1.5, cex=0.88)
 ```
 
 
@@ -470,11 +442,7 @@ si <- function(x){
 ```
 
 
-
 \ 
-
-
-
 
 #### <span class="sp5">4.</span> Equations for the activities E(t) and I(t)
 
@@ -537,13 +505,6 @@ $$
 for the excitatory and inhibitory subpopulations. The parameters $\tau$ and $\tau^{\prime}$ represent the response delays, after which cells at time $t$ will be firing.
 
 
- 
-
-
-```{r}
-table_cap4 <- tables("4", caption = "Defining the System's Parameters and Functions")
-```
-
 
 ```{r fig.height=4, fig.width=4}
 functions <- data.frame("functions"= 
@@ -571,7 +532,7 @@ knitr::kable(functions, col.names = c("", ""), escape = F) %>%
   column_spec(1, color = "white", 
               background = c(colpal2[2], colpal2[3], colpal2[4], colpal2[5], 
                              colpal2[6])) %>%
-  add_header_above(c("Table 1.3: Defining the System Functions" = 2), 
+  add_header_above(c("Table 1.2: Defining the System Functions" = 2), 
                    align = "l", line = T)  %>%
   kable_paper()
 ```
@@ -653,8 +614,6 @@ $$
 
 where we define $\tau_e$ and $\tau_i$ as the time constants, $k_e$ and $k_i$ as the non-dimensional constants, $r_e$ and $r_i$ as the constants describing the length of the refractory periods, $S_e$ and $S_i$ as sigmoid functions representing the nonlinearity of the interactions, $c_{1,2,3,4}$ as the parameters representing the strength of the excitatory to inhibitory interactions, and $P$ and $Q$ as the external inputs to the excitatory and inhibitory populations respectively. 
 
-\ 
-
 
 ```{r fig.height=4, fig.width=4}
 parameters <- data.frame("parameters"= 
@@ -701,17 +660,14 @@ knitr::kable(parameters, col.names = c("", ""), escape = F) %>%
               background = c(colpal2[2], colpal2[3], colpal2[4], colpal2[5], 
                              colpal2[6], colpal2[7], colpal2[8], colpal2[9], 
                              colpal2[10], colpal2[11], colpal2[12])) %>%
-  add_header_above(c("Table 1.4: Defining the System Parameters" = 2), 
+  add_header_above(c("Table 1.3: Defining the System Parameters" = 2), 
                    align = "l", line = T)  %>%
   kable_paper()
 ```
 
 
 
-
 \ 
-
-
 
 
 **The System's Resting State.** The point $(E=0, I=0)$ is the system's resting state, which we require to be a stable fixed point. The resting state's mathematical result is that $E=0, I=0$ must be a steady-state solution for $P(t)=Q(t)=0$, i.e., in the vacancy of external inputs. This can be accomplished by transforming $S_e$ and $S_i$ so that $S_e(0)=0$ and $S_i(0)=0$. Thus, we subtract $S(0)$ from the original function. We have that the maximum values of $S_e$ and $S_i$ are less than 1, which we denote as $k_e$ and $k_i$. Furthermore, the resting state must be stable to be of physiological significance.
@@ -742,7 +698,7 @@ $$
 ------------------------------
 
 
-## Phase Plane Analysis, Steady-State Solutions, and Limit Cycles
+## Phase Plane Analysis
 
 
 Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution's behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
@@ -757,12 +713,6 @@ $$\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\le
 
 No particular significance is associated with our choice for the logistic curve; any other function with the characteristic sigmoid properties would likewise be suitable.
 
-\ 
-
-
-```{r}
-table_cap6 <- tables("6", caption = "Defining the System's Parameters and Functions")
-```
 
 ```{r fig.height=4, fig.width=4}
 parameters <- data.frame("parameters"= 
@@ -822,7 +772,7 @@ knitr::kable(y, col.names = c("","","",""), escape = F, booktabs = T, linesep=""
   column_spec(3, color = "white", 
               background = c(colpal2[14], colpal2[13], colpal2[15], colpal2[16], 
                              colpal2[17], colpal2[18], colpal2[19], colpal2[20])) %>%
-  add_header_above(c("Table 1.5: Defining the System Parameters" = 4), 
+  add_header_above(c("Table 1.4: Defining the System Parameters" = 4), 
                    align = "l", line = T)  %>%
   kable_paper()
 ```
@@ -863,15 +813,13 @@ WilsonCowan <- function(t, y, parameters) {
 
 ### Flow Field and Nullclines
 
-In the following, we define the couplings as $c_1 = 12, c_2 = 4, c_3 = 13, c_4 = 11$; the refractory periods as $r_e = 1, r_i = 1$; and the external inputs as $P = 0, Q = 0$.
-
-In our numerical search of the steady-state points, we study the cases where the derivatives of $E$ and $I$ are zero. Since the system is highly nonlinear, we have to do it numerically. First, we draw the flow field and then draw the nullclines of the system. The $x$-nullclines are defined by $f(x,y)=0$, and the $y$-nullclines are defined by $g(x, y)=0$. These are the locations where $x$ and $y$ do not change with time. 
+In the following, we define the couplings as $c_1 = 12, c_2 = 4, c_3 = 13, c_4 = 11$; the refractory periods as $r_e = 1, r_i = 1$; and the external inputs as $P = 0, Q = 0$. In our numerical search of the steady-state points, we study the cases where the derivatives of $E$ and $I$ are zero. Since the system is highly nonlinear, we have to do it numerically. First, we draw the flow field and then draw the nullclines of the system. The $x$-nullclines are defined by $f(x,y)=0$, and the $y$-nullclines are defined by $g(x, y)=0$. These are the locations where $x$ and $y$ do not change with time. 
 
 
 
 
 ```{r}
-body_cap5 <- fig_nums(name = "phase5", caption = "Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\\theta_e=2.8$, $a_i= 1$, $\\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$.")
+body_cap5 <- fig_nums(name = "body_cap5", caption = "Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\\theta_e=2.8$, $a_i= 1$, $\\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$.")
 ```
 
 
@@ -895,7 +843,8 @@ grid()
 example4_nullclines <- nullclines(WilsonCowan,
                                   xlim = c(-0.0, .5),
                                   ylim = c(-0.0, .5),
-                                  col=c("lightseagreen","aquamarine4"))
+                                  col=c(colpal2[9], colpal2[12]),
+                                  lwd=2)
 ```
 
 
@@ -918,9 +867,7 @@ $$
 
 $$c_1>9/a_e \tag{16}$$
 
-then there is a class of stimulus configurations where the nullcline equations $14$ and $15$ will have at least three intersections. In other words, the equations $12$ and $13$ will have at least three steady-state solutions. Here, $a_e$  is the slope parameter for the excitatory response function. 
-
-To simplify obtaining the result of Condition 16, we set the refractory period of $r_e$ and $r_i$ to be equal. Without losing any meaning, we use the values of $r_e$ and $r_i$ in the rest of the study. 
+then there is a class of stimulus configurations where the nullcline equations $14$ and $15$ will have at least three intersections. In other words, the equations $12$ and $13$ will have at least three steady-state solutions. Here, $a_e$  is the slope parameter for the excitatory response function. To simplify obtaining the result of Condition 16, we set the refractory period of $r_e$ and $r_i$ to be equal. Without losing any meaning, we use the values of $r_e$ and $r_i$ in the rest of the study. 
 
 
 
@@ -942,8 +889,8 @@ grid()
 example4_nullclines <- nullclines(WilsonCowan,
                                   xlim = c(-0, .5),
                                   ylim = c(-0, .5),
-                                  lty = 2, lwd = 2,
-                                  col=c("lightseagreen","aquamarine4"))
+                                  lty = 1, lwd = 2,
+                                  col=c(colpal2[7], colpal2[10]))
 
 ## Equilibrium Points
 
@@ -1027,7 +974,7 @@ WilsonCowan2 <- function(t, y, parameters) {
 
 
 ```{r}
-body_cap7 <- fig_nums(name = "phase7", caption = "Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: $c_1=13$, $c_2=4$, $c_3=22$, $c_4=2$, $a_e=1.5$, $\\theta_e=2.5$, $a_i=6$, $\\theta_i=4.3$, $r_e=1$, and $r_i=1$.")
+body_cap7 <- fig_nums(name = "body_cap7", caption = "Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: $c_1=13$, $c_2=4$, $c_3=22$, $c_4=2$, $a_e=1.5$, $\\theta_e=2.5$, $a_i=6$, $\\theta_i=4.3$, $r_e=1$, and $r_i=1$.")
 ```
 
 
@@ -1044,7 +991,7 @@ example4_nullclines <- nullclines(WilsonCowan2,
                                   xlim = c(-0.01, .425),
                                   ylim = c(0, .45),
                                   lty = 1, lwd = 2,
-                                  col=c("lightseagreen","aquamarine4"))
+                                  col=c(colpal2[7], colpal2[10]))
 grid()
 
 points(0, 0.04372, pch=16, main="Stable node")
@@ -1067,13 +1014,6 @@ text(0.37, 0.36408, "Saddle Point", cex = 0.7)
 
 
 The physiological significance of Theorem 2 shows that $c_2$ and $c_3$ measure the strength of negative feedback. Therefore, these five steady-state solutions require a powerful negative feedback loop. 
-
-
-
-
-
-
-\ 
 
 
 There is another type of transitory behavior exhibited by our model: a limit cycle. If there is only one steady-state solution, and if the steady-state solution is unstable, a limit cycle will occur. We can use linear stability to show an adequate, but not required, condition for such a steady state's instability:
@@ -1156,7 +1096,7 @@ WilsonCowan2 <- function(t, y, parameters) {
 
 
 ```{r}
-body_cap8 <- fig_nums(name = "phase8", caption = "Phase Plane Analysis. Determine the steady-state solution by the nullclines' intersection. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\\theta_e=4$, $a_i=2$, $\\theta_i = 3.7$, $r_e=1$, $r_i=1$.")
+body_cap8 <- fig_nums(name = "body_cap8", caption = "Phase Plane Analysis. Determine the steady-state solution by the nullclines' intersection. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\\theta_e=4$, $a_i=2$, $\\theta_i = 3.7$, $r_e=1$, $r_i=1$.")
 ```
 
 
@@ -1173,8 +1113,8 @@ grid()
 example4_nullclines <- nullclines(WilsonCowan2,
                                   xlim = c(-0.01, .425),
                                   ylim = c(0, .5),
-                                  lty = 2, lwd = 2,
-                                  col=c("lightseagreen","aquamarine4"))
+                                  lty = 1, lwd = 2,
+                                  col=c(colpal2[7], colpal2[10]))
 
 ```
 
@@ -1186,7 +1126,7 @@ In the phase plane, the limit cycle is an isolated closed orbit, where "closed" 
 
 
 ```{r}
-body_cap9 <- fig_nums(name = "phase9", caption = "Phase Plane Analysis showing limit cycle trajectory in response to constant simulation $P=1.25$. Dashed lines are nullclines. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\\theta_e=4$, $a_i=2$, $\\theta_i = 3.7$, $r_e=1$, $r_i=1$.")
+body_cap9 <- fig_nums(name = "body_cap9", caption = "Phase Plane Analysis showing limit cycle trajectory in response to constant simulation $P=1.25$. Dashed lines are nullclines. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\\theta_e=4$, $a_i=2$, $\\theta_i = 3.7$, $r_e=1$, $r_i=1$.")
 ```
 
 
@@ -1203,8 +1143,8 @@ grid()
 example4_nullclines <- nullclines(WilsonCowan2,
                                   xlim = c(-0.01, .425),
                                   ylim = c(0, .5),
-                                  lty = 2, lwd = 2,
-                                  col=c("lightseagreen","aquamarine4"))
+                                  lty = 1, lwd = 2,
+                                  col=c(colpal2[7], colpal2[10]))
 
 y0 <- matrix(c(0.1,0.3,
                0,0,
@@ -1236,11 +1176,9 @@ We established the resting state $E=0, I=0$ to be stable in the absence of an ou
 
 
 ```{r}
-body_cap10 <- fig_nums(name = "phase10", caption = "$I(t)$ and $E(t)$ for limit cycle shown in Fig. 9. The limit cycle depends on the value of $P$, i.e. $Q$ being set equal to zero.")
+body_cap10 <- fig_nums(name = "body_cap10", caption = "$I(t)$ and $E(t)$ for limit cycle shown in Fig. 9. The limit cycle depends on the value of $P$, i.e. $Q$ being set equal to zero.")
 ```
 
-
-\ 
 
 
 ```{r echo=FALSE, fig.cap=body_cap10, fig.show='hold', out.width=350 , message=FALSE, warning=FALSE}
@@ -1248,7 +1186,7 @@ body_cap10 <- fig_nums(name = "phase10", caption = "$I(t)$ and $E(t)$ for limit 
 example4_solution <- numericalSolution(WilsonCowan2,
                         y0 = c(0.0, 0.1),
                         type = "two",
-                        col=c("cornflowerblue", "aquamarine4"),
+                        col=c(colpal2[2], colpal2[4]),
                         add.legend = T,
                         xlab = TeX("$t$"),
                         ylab = c(TeX("$I$"), TeX("$E$")),
@@ -1283,36 +1221,21 @@ This study's results directly followed from the analysis of distinct excitatory-
 **Wilson and Cowan's model** is a system of coupled, nonlinear, the differential equation for the firing rates of the excitatory and inhibitory populations. A large number of neurons make up the neural system. Under the control of external stimulation and bifurcation parameters, these networks exhibit diverse dynamics and flow patterns. The Wilson-Cowan study models the excitatory and inhibitory effects in syntactically coupled neuronal systems. By employing two differential equations, the system becomes a "course-grained" depiction of a neuron network's activity. The model's primary parameters include the correlation between the excitatory and inhibitory populations and the external stimulant allotted to each sub-population. This study shows that varying these parameters generates various dynamical behaviors that correspond to motion in the brain. 
 
 
-\ 
-
 
 #### Point 1. Logistic Population Dynamics
-
-<div class="b1">
 
 The logistic growth model is commonly used in biology to model a population's growth under density dependence. The study assumed that the resting threshold $\theta$ is the same for all cells in the population. Hence, it held that the sigmoid, logistic, response function $\mathcal{S}(x)$ is related to the distribution of synapses. Here, $a$ and $\theta$ are parameters for the sigmoid function:
 
 $$\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.$$
 
 
-</div>
-
-
-\ 
-
 
 #### Point 2. Phase Plane Analysis, Steady-State Solutions, and Limit Cycles
 
-<div class="b1">
 
 For the Wilson Cowan model, we predicted the potential using the sum of the excitatory and inhibitory populations' activities. We can then use dynamical system methods such as phase plane, eigenvalue, and bifurcation analysis for both sub-populations. 
 
 Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We chose some values of their parameters and some initial conditions and plotted the solution's behavior. We defined a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigated necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
-
-</div>
-
-
-\ 
 
 
 

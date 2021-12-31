@@ -372,8 +372,7 @@ div.tocify {
 <p>The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired. The following is a background summary of neuron composition and structure.</p>
 <div id="background" class="section level3">
 <h3>Background</h3>
-<p>All cells have a charge difference across their entire membrane, and this difference generates potential energy of <span class="math inline">\(V\)</span>. In most cell types, the resting potential is resistant to chaos. However, in some cell types (like neurons), variations in the cell’s charge distribution can lead to large membrane potential changes. Such cells are called excitatory.</p>
-<p>Neurons use their excitable cell membranes to convey information. Each neuron cell contains a cell body called a somatic cell, a branching tree called a dendrite, and a single extension arm called an axon (Figure 1). Dendrites receive signals and integrate these signals into the body. When the incoming signals permit a response, a pulse generates in the soma’s transmembrane voltage. This pulse is called an action potential, and it diffuses down the cell’s axon and relays a signal to other neurons in the network.</p>
+<p>All cells have a charge difference across their entire membrane, and this difference generates potential energy of <span class="math inline">\(V\)</span>. In most cell types, the resting potential is resistant to chaos. However, in some cell types (like neurons), variations in the cell’s charge distribution can lead to large membrane potential changes. Such cells are called excitatory. Neurons use their excitable cell membranes to convey information. Each neuron cell contains a cell body called a somatic cell, a branching tree called a dendrite, and a single extension arm called an axon (Figure 1). Dendrites receive signals and integrate these signals into the body. When the incoming signals permit a response, a pulse generates in the soma’s transmembrane voltage. This pulse is called an action potential, and it diffuses down the cell’s axon and relays a signal to other neurons in the network.</p>
 <div class="figure" style="text-align: center">
 <img src="assets/images/axon.jpg" alt="Figure  1: Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon." width="400" />
 <p class="caption">
@@ -387,7 +386,6 @@ Figure 1: Projecting from each cell’s body, called its soma, is a tree of dend
 Figure 2: A Single Neuron. Dendrites are branched extensions that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites.
 </p>
 </div>
-<p> </p>
 </div>
 <div id="synaptic-transmission" class="section level3">
 <h3>Synaptic transmission</h3>
@@ -471,9 +469,9 @@ S(x) = \dfrac{1}{1 + e^{-a (x - \theta)}} \tag{5}
 \]</span></p>
 <p>The response function is sigmoidal if <span class="math inline">\(S(x)\)</span> monotonically increases on the interval (-<span class="math inline">\(\infty\)</span>, +<span class="math inline">\(\infty\)</span>), approaches the asymptotic states zero and one as <span class="math inline">\(x\)</span> approaches –<span class="math inline">\(\infty\)</span> and +<span class="math inline">\(\infty\)</span> respectively, and has one inflection point.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-13-1.png" alt="Figure  5: Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: $S(x)=\frac{1}{1+e^{-a(x-\theta)}},$ such that $\theta=5, a=1$." width="500" />
+<img src="index_files/figure-html/unnamed-chunk-13-1.png" alt="Figure  5: Sigmoid Subpopulation Response Function, with $\theta=5$ and $a=1$." width="500" />
 <p class="caption">
-Figure 5: Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: <span class="math inline">\(S(x)=\frac{1}{1+e^{-a(x-\theta)}},\)</span> such that <span class="math inline">\(\theta=5, a=1\)</span>.
+Figure 5: Sigmoid Subpopulation Response Function, with <span class="math inline">\(\theta=5\)</span> and <span class="math inline">\(a=1\)</span>.
 </p>
 </div>
 <p>To see if <em>condition 2</em> is fulfilled, we need the total input to the subpopulation to be a weighed contribution:</p>
@@ -504,58 +502,6 @@ Figure 3: The myelin space on the axon has high-concentration ion channels, allo
 \]</span></p>
 <p>The study assumes that the resting threshold <span class="math inline">\(\theta\)</span> is the same for all cells in the population. Hence, it holds that the sigmoid response function is related to the distribution of synapses.</p>
 <p> </p>
-<table class="table table-striped table-hover lightable-paper" style="font-size: 10px; font-family: Frank-Ruhl-Libre; width: auto !important; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; font-size: 11px;" colspan="2">
-<div style="">
-Table 1.1: Defining the System Functions
-</div>
-</th>
-</tr>
-<tr>
-<th style="text-align:left;color: darkslategray !important;font-size: 1px;">
-</th>
-<th style="text-align:left;color: darkslategray !important;font-size: 1px;">
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #a3c57a !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="function: $\bf \mathcal{S}(x)$">
-<span class="math inline">\(\bf \mathcal{S}(x)\)</span>
-</td>
-<td style="text-align:left;">
-sigmoidal subpopulation response function
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #5dac7d !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="function: $\bf x(t)$">
-<span class="math inline">\(\bf x(t)\)</span>
-</td>
-<td style="text-align:left;">
-average level of excitation within a subpopulation
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #2f8355 !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="function: $\bf D(\theta)$">
-<span class="math inline">\(\bf D(\theta)\)</span>
-</td>
-<td style="text-align:left;">
-distribution of individual neural thresholds
-</td>
-</tr>
-<tr>
-<td style="text-align:left;font-weight: bold;color: white !important;background-color: #16504B !important;" data-toggle="popover" data-container="body" data-trigger="hover" data-placement="right" data-content="function: $\bf C(w)$">
-<span class="math inline">\(\bf C(w)\)</span>
-</td>
-<td style="text-align:left;">
-distribution of the number of afferent synapses per cell
-</td>
-</tr>
-</tbody>
-</table>
-<p> </p>
 </div>
 <div id="average-level-of-excitation" class="section level4">
 <h4><span class="sp4">3.</span> Average Level of Excitation</h4>
@@ -571,7 +517,7 @@ distribution of the number of afferent synapses per cell
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Table 1.2: Defining the System Parameters
+Table 1.1: Defining the System Parameters
 </div>
 </th>
 </tr>
@@ -633,11 +579,12 @@ external input to inhibitory cells
 </tr>
 </tbody>
 </table>
+<p> </p>
 <p>The different coefficients reflect the difference in axon and dendritic geometry between excitatory and inhibitory cell types. In contrast, variations in external inputs assume the existence of cell types specific to the population. We can illustrate the diversity in axon and dendritic geometry between excitatory and inhibitory cell types by drawing several neurons, as shown below.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-23-1.png" alt="Figure  4: When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents." width="250" /><img src="index_files/figure-html/unnamed-chunk-23-2.png" alt="Figure  4: When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents." width="250" /><img src="index_files/figure-html/unnamed-chunk-23-3.png" alt="Figure  4: When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents." width="250" /><img src="index_files/figure-html/unnamed-chunk-23-4.png" alt="Figure  4: When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents." width="250" />
+<img src="index_files/figure-html/unnamed-chunk-20-1.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-20-2.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-20-3.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-20-4.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" />
 <p class="caption">
-Figure 4: When an action potential reaches the axon’s edge, it triggers an inrush of calcium, causing neurotransmitters’ release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents.
+Figure 6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types.
 </p>
 </div>
 <p>Overall, the dendrite branch structure is an essential feature in coupling synaptic inputs and managing action potentials in neurons. Each neuron has a unique branch density and pattern: this unique morphology correlates to the neuron’s function.</p>
@@ -693,7 +640,7 @@ Figure 4: When an action potential reaches the axon’s edge, it triggers an inr
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Table 1.3: Defining the System Functions
+Table 1.2: Defining the System Functions
 </div>
 </th>
 </tr>
@@ -795,13 +742,12 @@ E(t + dt) = \left(1- rE\left(t\right)\right) S_e  \left(kc_1 E\left(t\right) - k
 \end{align}
 \]</span></p>
 <p>where we define <span class="math inline">\(\tau_e\)</span> and <span class="math inline">\(\tau_i\)</span> as the time constants, <span class="math inline">\(k_e\)</span> and <span class="math inline">\(k_i\)</span> as the non-dimensional constants, <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> as the constants describing the length of the refractory periods, <span class="math inline">\(S_e\)</span> and <span class="math inline">\(S_i\)</span> as sigmoid functions representing the nonlinearity of the interactions, <span class="math inline">\(c_{1,2,3,4}\)</span> as the parameters representing the strength of the excitatory to inhibitory interactions, and <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> as the external inputs to the excitatory and inhibitory populations respectively.</p>
-<p> </p>
 <table class="table table-striped table-hover table-condensed lightable-paper" style="font-size: 10px; font-family: Frank-Ruhl-Libre; width: auto !important; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="2">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Table 1.4: Defining the System Parameters
+Table 1.3: Defining the System Parameters
 </div>
 </th>
 </tr>
@@ -921,21 +867,20 @@ c_3 \mathbf{E} &amp;= c_4 \mathbf{I} + S_i^{-1}\left( \frac{I}{k_i-r_iI}\right) 
 <hr />
 </div>
 </div>
-<div id="phase-plane-analysis-steady-state-solutions-and-limit-cycles" class="section level2">
-<h2>Phase Plane Analysis, Steady-State Solutions, and Limit Cycles</h2>
+<div id="phase-plane-analysis" class="section level2">
+<h2>Phase Plane Analysis</h2>
 <p>Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution’s behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> and investigate necessary dynamical behavior based on relationships between the couplings <span class="math inline">\(c_1, c_2, c_3, c_4\)</span> and the sigmoid response parameters <span class="math inline">\(a_e, a_i\)</span> and <span class="math inline">\(\theta_e, \theta_i\)</span>.</p>
 <div id="defining-the-parameters" class="section level3">
 <h3>Defining the Parameters</h3>
 <p>Now, we need to solve the above equation numerically. We will choose some values of their parameters and some initial conditions and plot the solution’s behavior in the state space and in time. We define a stimulus configuration as any choice of constant values for external inputs <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> and investigate necessary dynamical behavior based on relationships between the couplings <span class="math inline">\(c_1, c_2, c_3, c_4\)</span> and the sigmoid response parameters <span class="math inline">\(a_e, a_i\)</span> and <span class="math inline">\(\theta_e, \theta_i\)</span>. Here, <span class="math inline">\(a\)</span> and <span class="math inline">\(\theta\)</span> are parameters for the sigmoid function:</p>
 <p><span class="math display">\[\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.\]</span></p>
 <p>No particular significance is associated with our choice for the logistic curve; any other function with the characteristic sigmoid properties would likewise be suitable.</p>
-<p> </p>
 <table class="table table-striped table-hover table-condensed lightable-paper" style="font-size: 10px; font-family: Frank-Ruhl-Libre; width: auto !important; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="border-bottom:hidden;padding-bottom:0; padding-left:3px;padding-right:3px;text-align: left; " colspan="4">
 <div style="border-bottom: 1px solid #ddd; padding-bottom: 5px; ">
-Table 1.5: Defining the System Parameters
+Table 1.4: Defining the System Parameters
 </div>
 </th>
 </tr>
@@ -1069,12 +1014,11 @@ describes location of max slope for inhibitory subpopulation response function
 </div>
 <div id="flow-field-and-nullclines" class="section level3">
 <h3>Flow Field and Nullclines</h3>
-<p>In the following, we define the couplings as <span class="math inline">\(c_1 = 12, c_2 = 4, c_3 = 13, c_4 = 11\)</span>; the refractory periods as <span class="math inline">\(r_e = 1, r_i = 1\)</span>; and the external inputs as <span class="math inline">\(P = 0, Q = 0\)</span>.</p>
-<p>In our numerical search of the steady-state points, we study the cases where the derivatives of <span class="math inline">\(E\)</span> and <span class="math inline">\(I\)</span> are zero. Since the system is highly nonlinear, we have to do it numerically. First, we draw the flow field and then draw the nullclines of the system. The <span class="math inline">\(x\)</span>-nullclines are defined by <span class="math inline">\(f(x,y)=0\)</span>, and the <span class="math inline">\(y\)</span>-nullclines are defined by <span class="math inline">\(g(x, y)=0\)</span>. These are the locations where <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not change with time.</p>
+<p>In the following, we define the couplings as <span class="math inline">\(c_1 = 12, c_2 = 4, c_3 = 13, c_4 = 11\)</span>; the refractory periods as <span class="math inline">\(r_e = 1, r_i = 1\)</span>; and the external inputs as <span class="math inline">\(P = 0, Q = 0\)</span>. In our numerical search of the steady-state points, we study the cases where the derivatives of <span class="math inline">\(E\)</span> and <span class="math inline">\(I\)</span> are zero. Since the system is highly nonlinear, we have to do it numerically. First, we draw the flow field and then draw the nullclines of the system. The <span class="math inline">\(x\)</span>-nullclines are defined by <span class="math inline">\(f(x,y)=0\)</span>, and the <span class="math inline">\(y\)</span>-nullclines are defined by <span class="math inline">\(g(x, y)=0\)</span>. These are the locations where <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not change with time.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/Nullclines-1.png" alt="Figure  5: Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: $S(x)=\frac{1}{1+e^{-a(x-\theta)}},$ such that $\theta=5, a=1$." width="300" /><img src="index_files/figure-html/Nullclines-2.png" alt="Figure  5: Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: $S(x)=\frac{1}{1+e^{-a(x-\theta)}},$ such that $\theta=5, a=1$." width="300" />
+<img src="index_files/figure-html/Nullclines-1.png" alt="Figure  7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="300" /><img src="index_files/figure-html/Nullclines-2.png" alt="Figure  7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="300" />
 <p class="caption">
-Figure 5: Sigmoid Subpopulation Response Function. The particular function shown here is the logistic curve: <span class="math inline">\(S(x)=\frac{1}{1+e^{-a(x-\theta)}},\)</span> such that <span class="math inline">\(\theta=5, a=1\)</span>.
+Figure 7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:<span class="math inline">\(c_1=12\)</span>, <span class="math inline">\(c_2 = 4\)</span>, <span class="math inline">\(c_3= 13\)</span>, <span class="math inline">\(c_4=11\)</span>, <span class="math inline">\(a_e=1.2\)</span>, <span class="math inline">\(\theta_e=2.8\)</span>, <span class="math inline">\(a_i= 1\)</span>, <span class="math inline">\(\theta_i = 4\)</span>, <span class="math inline">\(r_e =1\)</span>, <span class="math inline">\(r_i=1\)</span>, <span class="math inline">\(P=0\)</span>, and <span class="math inline">\(Q=0\)</span>.
 </p>
 </div>
 <p>Another use of nullclines becomes evident; the locations where <span class="math inline">\(x\)</span>- and <span class="math inline">\(y\)</span>-nullclines intersect are the equilibrium points.</p>
@@ -1087,12 +1031,11 @@ Figure 5: Sigmoid Subpopulation Response Function. The particular function shown
 \]</span></p>
 <p><strong>Theorem 1.</strong> A stimulus configuration is defined as any choice of constant values for P and Q. If</p>
 <p><span class="math display">\[c_1&gt;9/a_e \tag{16}\]</span></p>
-<p>then there is a class of stimulus configurations where the nullcline equations <span class="math inline">\(14\)</span> and <span class="math inline">\(15\)</span> will have at least three intersections. In other words, the equations <span class="math inline">\(12\)</span> and <span class="math inline">\(13\)</span> will have at least three steady-state solutions. Here, <span class="math inline">\(a_e\)</span> is the slope parameter for the excitatory response function.</p>
-<p>To simplify obtaining the result of Condition 16, we set the refractory period of <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> to be equal. Without losing any meaning, we use the values of <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> in the rest of the study.</p>
+<p>then there is a class of stimulus configurations where the nullcline equations <span class="math inline">\(14\)</span> and <span class="math inline">\(15\)</span> will have at least three intersections. In other words, the equations <span class="math inline">\(12\)</span> and <span class="math inline">\(13\)</span> will have at least three steady-state solutions. Here, <span class="math inline">\(a_e\)</span> is the slope parameter for the excitatory response function. To simplify obtaining the result of Condition 16, we set the refractory period of <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> to be equal. Without losing any meaning, we use the values of <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> in the rest of the study.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-32-1.png" alt="Figure  3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside." width="400" />
+<img src="index_files/figure-html/unnamed-chunk-27-1.png" alt="Figure  8: Plot of the Equilibrium Points (Steady State solutions) satisfying Theorm 1. Dashed lines are isoclines. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="400" />
 <p class="caption">
-Figure 3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside.
+Figure 8: Plot of the Equilibrium Points (Steady State solutions) satisfying Theorm 1. Dashed lines are isoclines. Parameters:<span class="math inline">\(c_1=12\)</span>, <span class="math inline">\(c_2 = 4\)</span>, <span class="math inline">\(c_3= 13\)</span>, <span class="math inline">\(c_4=11\)</span>, <span class="math inline">\(a_e=1.2\)</span>, <span class="math inline">\(\theta_e=2.8\)</span>, <span class="math inline">\(a_i= 1\)</span>, <span class="math inline">\(\theta_i = 4\)</span>, <span class="math inline">\(r_e =1\)</span>, <span class="math inline">\(r_i=1\)</span>, <span class="math inline">\(P=0\)</span>, and <span class="math inline">\(Q=0\)</span>.
 </p>
 </div>
 <p>We can see that the system has three steady-state solutions, thus satisfying Theorem 1. The phase plane diagram exhibits a stable fixed point at (x,y) = <span class="math inline">\((0.0285, 0.0644)\)</span>, an unstable saddle at (x,y) = <span class="math inline">\((0.0558, 0.1438)\)</span>, and a stable fixed point at (x,y) = <span class="math inline">\((0.2408, 0.4555)\)</span>. Therefore, we can always choose between <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span>, so there are three intersection points. The physiologic significance of Theorem 1 illustrates that <span class="math inline">\(1/a_e\)</span>, where <span class="math inline">\(a_e\)</span> is the excitatory sigmoid response parameter, directly relates to the variance of the distribution of thresholds or synaptic connections.</p>
@@ -1105,13 +1048,12 @@ Figure 3: The myelin space on the axon has high-concentration ion channels, allo
 \]</span></p>
 <p>Then, there will be five steady states for a particular choice of stimulus configuration, though not simultaneously. This theorem is not sufficient to solve multiple hysteresis.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/PhaseAnalysis-1.png" alt="Figure  6: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: $c_1=13$, $c_2=4$, $c_3=22$, $c_4=2$, $a_e=1.5$, $\theta_e=2.5$, $a_i=6$, $\theta_i=4.3$, $r_e=1$, and $r_i=1$." width="400" />
+<img src="index_files/figure-html/PhaseAnalysis-1.png" alt="Figure  9: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: $c_1=13$, $c_2=4$, $c_3=22$, $c_4=2$, $a_e=1.5$, $\theta_e=2.5$, $a_i=6$, $\theta_i=4.3$, $r_e=1$, and $r_i=1$." width="400" />
 <p class="caption">
-Figure 6: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: <span class="math inline">\(c_1=13\)</span>, <span class="math inline">\(c_2=4\)</span>, <span class="math inline">\(c_3=22\)</span>, <span class="math inline">\(c_4=2\)</span>, <span class="math inline">\(a_e=1.5\)</span>, <span class="math inline">\(\theta_e=2.5\)</span>, <span class="math inline">\(a_i=6\)</span>, <span class="math inline">\(\theta_i=4.3\)</span>, <span class="math inline">\(r_e=1\)</span>, and <span class="math inline">\(r_i=1\)</span>.
+Figure 9: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: <span class="math inline">\(c_1=13\)</span>, <span class="math inline">\(c_2=4\)</span>, <span class="math inline">\(c_3=22\)</span>, <span class="math inline">\(c_4=2\)</span>, <span class="math inline">\(a_e=1.5\)</span>, <span class="math inline">\(\theta_e=2.5\)</span>, <span class="math inline">\(a_i=6\)</span>, <span class="math inline">\(\theta_i=4.3\)</span>, <span class="math inline">\(r_e=1\)</span>, and <span class="math inline">\(r_i=1\)</span>.
 </p>
 </div>
 <p>The physiological significance of Theorem 2 shows that <span class="math inline">\(c_2\)</span> and <span class="math inline">\(c_3\)</span> measure the strength of negative feedback. Therefore, these five steady-state solutions require a powerful negative feedback loop.</p>
-<p> </p>
 <p>There is another type of transitory behavior exhibited by our model: a limit cycle. If there is only one steady-state solution, and if the steady-state solution is unstable, a limit cycle will occur. We can use linear stability to show an adequate, but not required, condition for such a steady state’s instability:</p>
 <p><span class="math display">\[
 \begin{align} 
@@ -1131,16 +1073,16 @@ c_1a_e \gt c_4 a_i + 18 \tag{18}
 <h4>Limit Cycles</h4>
 <p>Non-linear systems can exhibit a type of behavior known as a limit cycle. If there is only one steady-state solution, and if the steady-state solution is unstable, a limit cycle will occur. In the following, we define the parameters for satisfying conditions 18 and 20 as <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span> and <span class="math inline">\(r_i=1\)</span>. We can determine a steady-state solution by the intersection of the nullclines as follows.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-39-1.png" alt="Figure  7: Phase Plane Analysis. Determine the steady-state solution by the nullclines' intersection. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="400" />
+<img src="index_files/figure-html/unnamed-chunk-34-1.png" alt="Figure  10: Phase Plane Analysis. Determine the steady-state solution by the nullclines' intersection. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="400" />
 <p class="caption">
-Figure 7: Phase Plane Analysis. Determine the steady-state solution by the nullclines’ intersection. Parameters: <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span>, <span class="math inline">\(r_i=1\)</span>.
+Figure 10: Phase Plane Analysis. Determine the steady-state solution by the nullclines’ intersection. Parameters: <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span>, <span class="math inline">\(r_i=1\)</span>.
 </p>
 </div>
 <p>In the phase plane, the limit cycle is an isolated closed orbit, where “closed” means the periodicity of movement, and “isolated” means the limit of motion, where nearby trajectories converge or deviate. We can alter our initial values of <span class="math inline">\(E_0\)</span> and <span class="math inline">\(I_0\)</span> to obtain different paths in the phase space.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/Final-1.png" alt="Figure  8: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation $P=1.25$. Dashed lines are nullclines. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="400" />
+<img src="index_files/figure-html/Final-1.png" alt="Figure  11: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation $P=1.25$. Dashed lines are nullclines. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="400" />
 <p class="caption">
-Figure 8: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation <span class="math inline">\(P=1.25\)</span>. Dashed lines are nullclines. Parameters: <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span>, <span class="math inline">\(r_i=1\)</span>.
+Figure 11: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation <span class="math inline">\(P=1.25\)</span>. Dashed lines are nullclines. Parameters: <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span>, <span class="math inline">\(r_i=1\)</span>.
 </p>
 </div>
 <p>The phase plane analysis illustrates a bounded steady-state solution that is classified as unstable; this is a typical feature of a limit cycle. The solution’s oscillating behavior, shown in Figure 10, follows typical limit cycle behavior:</p>
@@ -1152,11 +1094,10 @@ Figure 8: Phase Plane Analysis showing limit cycle trajectory in response to con
 <li>There is a higher value of P, and above this bound, the system’s limit cycle activity will cease.</li>
 <li>Within the range defined above, both the limit cycle frequency and the average value of <span class="math inline">\(E(t)\)</span> increases monotonically with respect to <span class="math inline">\(P\)</span>.</li>
 </ul>
-<p> </p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-42-1.png" alt="Figure  9: $I(t)$ and $E(t)$ for limit cycle shown in Fig. 9. The limit cycle depends on the value of $P$, i.e. $Q$ being set equal to zero." width="350" />
+<img src="index_files/figure-html/unnamed-chunk-37-1.png" alt="Figure  12: $I(t)$ and $E(t)$ for limit cycle shown in Fig. 9. The limit cycle depends on the value of $P$, i.e. $Q$ being set equal to zero." width="350" />
 <p class="caption">
-Figure 9: <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(E(t)\)</span> for limit cycle shown in Fig. 9. The limit cycle depends on the value of <span class="math inline">\(P\)</span>, i.e. <span class="math inline">\(Q\)</span> being set equal to zero.
+Figure 12: <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(E(t)\)</span> for limit cycle shown in Fig. 9. The limit cycle depends on the value of <span class="math inline">\(P\)</span>, i.e. <span class="math inline">\(Q\)</span> being set equal to zero.
 </p>
 </div>
 <hr />
@@ -1169,22 +1110,15 @@ Figure 9: <span class="math inline">\(I(t)\)</span> and <span class="math inline
 <div id="summary-of-topic" class="section level3">
 <h3>Summary of topic</h3>
 <p><strong>Wilson and Cowan’s model</strong> is a system of coupled, nonlinear, the differential equation for the firing rates of the excitatory and inhibitory populations. A large number of neurons make up the neural system. Under the control of external stimulation and bifurcation parameters, these networks exhibit diverse dynamics and flow patterns. The Wilson-Cowan study models the excitatory and inhibitory effects in syntactically coupled neuronal systems. By employing two differential equations, the system becomes a “course-grained” depiction of a neuron network’s activity. The model’s primary parameters include the correlation between the excitatory and inhibitory populations and the external stimulant allotted to each sub-population. This study shows that varying these parameters generates various dynamical behaviors that correspond to motion in the brain.</p>
-<p> </p>
 <div id="point-1.-logistic-population-dynamics" class="section level4">
 <h4>Point 1. Logistic Population Dynamics</h4>
-<div class="b1">
 <p>The logistic growth model is commonly used in biology to model a population’s growth under density dependence. The study assumed that the resting threshold <span class="math inline">\(\theta\)</span> is the same for all cells in the population. Hence, it held that the sigmoid, logistic, response function <span class="math inline">\(\mathcal{S}(x)\)</span> is related to the distribution of synapses. Here, <span class="math inline">\(a\)</span> and <span class="math inline">\(\theta\)</span> are parameters for the sigmoid function:</p>
 <p><span class="math display">\[\mathcal{S}(x) = \frac{1}{1+\exp\left[-a(x-\theta)\right]}- \frac{1}{1+\exp\left({a\theta}\right)}.\]</span></p>
 </div>
-<p> </p>
-</div>
 <div id="point-2.-phase-plane-analysis-steady-state-solutions-and-limit-cycles" class="section level4">
 <h4>Point 2. Phase Plane Analysis, Steady-State Solutions, and Limit Cycles</h4>
-<div class="b1">
 <p>For the Wilson Cowan model, we predicted the potential using the sum of the excitatory and inhibitory populations’ activities. We can then use dynamical system methods such as phase plane, eigenvalue, and bifurcation analysis for both sub-populations.</p>
 <p>Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We chose some values of their parameters and some initial conditions and plotted the solution’s behavior. We defined a stimulus configuration as any choice of constant values for external inputs <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> and investigated necessary dynamical behavior based on relationships between the couplings <span class="math inline">\(c_1, c_2, c_3, c_4\)</span> and the sigmoid response parameters <span class="math inline">\(a_e, a_i\)</span> and <span class="math inline">\(\theta_e, \theta_i\)</span>.</p>
-</div>
-<p> </p>
 <hr />
 </div>
 </div>

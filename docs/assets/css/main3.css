@@ -101,11 +101,13 @@ p {
 }
 
 p.caption {
-  font-family: 'Frank Ruhl Libre';
-  font-size: 10.5pt;
+  font-size: 14px;
+  opacity: 1;
   margin-bottom: 1em;
   width: 90%;
-  font-weight: 300;
+  /*font-weight: 300;
+  font-family: 'Frank Ruhl Libre';*/
+  color: #757575;
 }
 
 caption {
