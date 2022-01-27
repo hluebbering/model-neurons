@@ -2,3 +2,6 @@ name: "Mathematical Modeling"
 output_dir: "docs"
 navbar:
   title: "Mathematical Modeling"
+  right:
+  - href: "https://hluebbering.github.io/"
+    icon: fa-home

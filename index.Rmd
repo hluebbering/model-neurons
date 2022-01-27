@@ -17,6 +17,14 @@ nocite: '@*'
 
 <script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/collapsible.js"></script>
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+ "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+});
+</script>
+
+
 
 ```{r, include=FALSE}
 library(kableExtra)
@@ -63,7 +71,7 @@ neur_cap <- fig_nums(name = "neur_cap", caption = "Projecting from each cell’s
 ```
 
 
-```{r, fig.cap = neur_cap, out.width=400}
+```{r, fig.cap = neur_cap, out.width="60%"}
 knitr::include_graphics("assets/images/axon.jpg")
 ```
 
@@ -91,7 +99,7 @@ soma <- xyzmatrix(x3)
 ```
 
 
-```{r, fig.width=8, fig.height=6, fig.cap= neur_cap2}
+```{r, fig.width=8, fig.height=6, fig.cap= neur_cap2, out.width="50%"}
 plot(n, WithNodes = F, col = 'black', cex=2)
 points(branch, col = colpal2[2], pch = 19, cex = 1.35)
 points(end, col = colpal2[5], pch = 19, cex = 1.35)
@@ -113,7 +121,7 @@ legend(195,80, ex.cs1, pch = 21, cex = 0.85, pt.bg = c(colpal2[2], colpal2[5], c
 
 
 
-### Synaptic transmission
+#### Synaptic transmission
 
 
 Postsynaptic Potentials, also called gradient potentials, are changes in the membrane potential of a chemical synapse. These potentials trigger or inhibit action potentials. Chemically-gated ion channels open on postsynaptic membranes, where sodium and potassium ions diffuse in the opposite directions. Postsynaptic receptors, located at chemical synapses, open ion channels and convert chemical signals into electrical signals. The following model describes the dynamics for the potential $\mathrm{V}\left(t\right)$ between the inside of the cell and outside of the cell for the membrane current $\mathrm{I}\left(t\right)$.
@@ -136,7 +144,7 @@ neur_cap6 <- fig_nums(name = "neur_cap6", caption = "The myelin space on the axo
 
 When an action potential reaches the axon, it activates calcium channels to induce an inrush of $\mathrm{Ca}^{2+}$ across the neuron cell's membrane (Figure 4). These calcium ions cause the release of signaling molecules called neurotransmitters that disperse through the synaptic cleft and attach to receptors on a cell's dendrites. The distance between the signaling cell's axon and the postsynaptic dendrite is the synaptic cleft. Neurotransmitter receptors on postsynaptic cells are converted into ion channels. When an electrical gradient triggers these neurotransmitter receptors, the receptor channel complexes cause the target cell's membrane excitation. In order to activate a sufficient number of these excitatory receptors, the action potential is activated in the cell and transmitted down its axon to the next cell.
 
-```{r, fig.cap = neur_cap6}
+```{r, fig.cap = neur_cap6, out.width="50%"}
 knitr::include_graphics("assets/images/ganglion.jpg")
 ``` 
 
@@ -148,7 +156,7 @@ Positive ion current directed from inside to outside defines a neuron's membrane
 neur_cap4 <- fig_nums(name = "neur_cap4", caption = "When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents.")
 ```
 
-```{r, fig.cap = neur_cap4}
+```{r, fig.cap = neur_cap4, out.width="70%"}
 knitr::include_graphics("assets/images/axon2.jpg")
 ```
 
@@ -162,11 +170,15 @@ The Wilson-Cowan model represents the dynamics between the spatially confined ex
 
 
 
-<span class="sp2">a.</span> **Logistic Population Dynamics:** The logistic growth model is commonly used in biology to model a population's growth under density dependence. The study assumes that the resting threshold $\theta$ is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function $\mathcal{S}(x)$ is related to the distribution of synapses.
+> a. Logistic Population Dynamics
+
+The logistic growth model is commonly used in biology to model a population's growth under density dependence. The study assumes that the resting threshold $\theta$ is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function $\mathcal{S}(x)$ is related to the distribution of synapses.
 
 
 
-<span class="sp3">b.</span> **Phase Plane Analysis, Steady-State Solutions, and Limit Cycles:** Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
+> b. Phase Plane Analysis, Steady-State Solutions, and Limit Cycles
+
+Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We define a stimulus configuration as any choice of constant values for external inputs $P$ and $Q$ and investigate necessary dynamical behavior based on relationships between the couplings $c_1, c_2, c_3, c_4$ and the sigmoid response parameters $a_e, a_i$ and $\theta_e, \theta_i$. 
 
 
 
@@ -199,23 +211,29 @@ Now, we have the equations $E(t)$ and $I(t)$. We assume that the value of these 
 
 **Neuron Assumptions.** We are concerned with the behavior of the subpopulations rather than individual cells. Under the following assumptions, we may ignore random spatial interactions: 
 
+<ol class="roundedlist">
 1. Assume that the cells containing the two populations are very close in space.
 2. Interconnections are arbitrary yet dense enough so that it is likely there's at least one path connecting any two cells in the population.
 3. Neural processes depend on the interaction of excitatory and inhibitory cells.
 
-
+</ol>
 
 \ 
 
 
 ### Support Material 
 
-#### <span class="sp2">1.</span> Proportion of Sensitive Cells in a Sub-population
+
+#### 1. Proportion of Sensitive Cells in a Sub-population
 
 First, the study obtained the independent expression of the proportion of sensitive cells and the proportion of cells that received at least a threshold stimulation. Relevant biologic assumptions assess when a neuron fires. Consequently, the most simple model must fulfill two **conditions**:
 
+<ol class="roundedlist2">
+
 1. The neuron should not be in its “refractory period,” meaning it can’t fire again immediately after having fired.
 2. Neurons need to receive enough input in a short time.
+
+</ol>
 
 If the total refractory period has a duration of $r$ at time $t$, then the proportion of excitatory cells that are refractory will be given by the following:
 
@@ -250,7 +268,7 @@ neur_cap5 <- fig_nums(name = "neur_cap5", caption = "Sigmoid Subpopulation Respo
 
 
 
-```{r, fig.cap=neur_cap5, out.width=500}
+```{r, fig.cap=neur_cap5, out.width="60%"}
 sigmoid = function(x,a,b) {
   1 / (1 + exp(-a*(x-b)))
 }
@@ -290,7 +308,7 @@ neur_cap6 <- fig_nums(name = "neur_cap6", caption = "Plot of the Sigmoid functio
 ```
 
 
-```{r, fig.cap=neur_cap6, out.width=500}
+```{r, fig.cap=neur_cap6, out.width="60%"}
 y1 <- Se(x)
 y2 <- Si(x)
 ## Not run: 
@@ -305,7 +323,7 @@ legend(-1,0.8, c(TeX("$S_{excitatory}$"),TeX("$S_{inhibitory}$")), lty = 1,lwd=4
 
 \ 
 
-#### <span class="sp3">2.</span> Subpopulation Response Functions
+#### 2. Subpopulation Response Functions
 
 If all cells receive same number of excitatory and inhibitory afferents, then the subpopulation response function $S(x)$ will take the form:
 
@@ -349,7 +367,7 @@ functions <- data.frame("functions"=
 \ 
 
 
-#### <span class="sp4">3.</span> Average Level of Excitation 
+#### 3. Average Level of Excitation 
 
 The inhibitory potential is when hyperpolarization brings about a net negative charge, so the potential is further away from zero. The excitation potential occurs during the depolarization process, so the potential is closer to the excitation threshold. Here is an expression for the average level of excitation generated in the cell at time $t$:
 
@@ -407,7 +425,7 @@ body_cap4 <- fig_nums(name = "body_cap4", caption = "Axonal and Dendritic geomet
 ```
 
 
-```{r, fig.width=7, fig.height=6, fig.show="hold", out.width=250, fig.cap=body_cap4}
+```{r, fig.width=7, fig.height=6, fig.show="hold", out.width="25%", fig.cap=body_cap4}
 plot(Cell07PNs[1], col = colpal2[2], lwd=1.5)
 plot(Cell07PNs[1:2], col = c(colpal2[2], colpal2[3]), lwd=1.5)
 plot(Cell07PNs[1:10], col = c(colpal2[2], colpal2[3], colpal2[4],
@@ -444,7 +462,7 @@ si <- function(x){
 
 \ 
 
-#### <span class="sp5">4.</span> Equations for the activities E(t) and I(t)
+#### 4. Equations for the activities E(t) and I(t)
 
 
 Suppose the probability that a cell is sensitive is independent of the probability that a cell is excited above the threshold. In that case, we can define the excitatory subpopulation as the following equation:
@@ -452,7 +470,7 @@ Suppose the probability that a cell is sensitive is independent of the probabili
 
 $$
 \begin{align*}
-\left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right]
+\left[{1-\int^t_{t-r}E(t^\prime) dt^\prime}\right]
 \mathcal{S}_e(x) \delta t
 \tag{8}
 \end{align*}
@@ -478,28 +496,30 @@ Due to fluctuations inherent in average excitation & cell thresholds, the parame
 \ 
 
 
-#### <span class="sp6">5.</span> Dynamics of a Localized Population of Neurons
+#### 5. Dynamics of a Localized Population of Neurons
 
 It follows that the equations governing the dynamics of a localized population of neurons take the form of the following expressions:
 
 $$
 \small
-\begin{align*}
-\mathbf{E}(t+\tau) \equiv& {\left[ 1-\int^t_{t-r}E(t^\prime) \, dt^\prime \right ]} \\
+\begin{align}
+\mathbf{E}(t+\tau) \equiv& {\left[ 1-\int^t_{t-r}E(t^\prime) dt^\prime \right ]} \\
 & \cdot \, \mathcal{S}_e
-\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] dt^\prime \right\}, 
-\tag{10} 
-\end{align*}
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) 
+[c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] dt^\prime \right\}, 
+\end{align}\tag{10}
 $$
 
 
 $$
 \small
 \begin{align}
-\mathbf{I}(t+\tau^\mathrm{\prime}) \equiv& {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; dt^\prime \right ]} \\
+\mathbf{I}(t+\tau^{\prime}) \equiv & 
+{\left[ 1 - \int^{t}_{t-r^{\prime}} I(t^\prime) dt^\prime \right ]} \\
 & \cdot \, \mathcal{S}_i
-\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] dt^\prime  \right\} , \tag{11} 
-\end{align}
+\left\{ \int^t_{-\infty} \alpha(t - t^\prime) 
+[c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] dt^\prime  \right\}
+\end{align}\tag{11}
 $$
 
 for the excitatory and inhibitory subpopulations. The parameters $\tau$ and $\tau^{\prime}$ represent the response delays, after which cells at time $t$ will be firing.
@@ -547,7 +567,7 @@ knitr::kable(functions, col.names = c("", ""), escape = F) %>%
 
 
 
-#### <span class="sp7">6.</span> Time Coarse Graining
+#### 6. Time Coarse Graining
 
 We are interested in the coarse-grained transitory behavior of the neural activity. Coarse-grained modeling aims to simulate the behavior of complex systems using simplified representations. In the above equation, we can get rid of the integral and multiply the stimulus by a constant describing the length of time influence. Consider the following application of time course-graining of equation E(t):
 
@@ -823,7 +843,7 @@ body_cap5 <- fig_nums(name = "body_cap5", caption = "Flow Field and Nullclines f
 ```
 
 
-```{r Nullclines, fig.cap=body_cap5, fig.show='hold', out.width=300}
+```{r Nullclines, fig.cap=body_cap5, fig.show='hold',out.width="45%"}
 example4_flowField  <- flowField(WilsonCowan,
                                  xlim = c(-0.01, .5),
                                  ylim = c(-0.01, .5),
@@ -877,7 +897,7 @@ body_cap6 <- fig_nums(name = "phase6", caption = "Plot of the Equilibrium Points
 ```
 
 
-```{r, fig.cap=body_cap6}
+```{r, fig.cap=body_cap6, out.width="60%"}
 example4_flowField  <- flowField(WilsonCowan,
                                  xlim = c(-0.0, .5),
                                  ylim = c(-0.0, .5),
@@ -978,7 +998,7 @@ body_cap7 <- fig_nums(name = "body_cap7", caption = "Phase plane and isoclines w
 ```
 
 
-```{r PhaseAnalysis, fig.cap=body_cap7 }
+```{r PhaseAnalysis, fig.cap=body_cap7, out.width="60%"}
 example4_flowField  <- flowField(WilsonCowan2,
                                  xlim = c(-0.01, .425),
                                  ylim = c(0, .45),
@@ -1101,7 +1121,7 @@ body_cap8 <- fig_nums(name = "body_cap8", caption = "Phase Plane Analysis. Deter
 
 
 
-```{r, fig.cap=body_cap8, fig.show='hold', message=FALSE}
+```{r, fig.cap=body_cap8, fig.show='hold', message=FALSE, out.width="60%"}
 example4_flowField  <- flowField(WilsonCowan2,
                                  xlim = c(-0.01, .425),
                                  ylim = c(0, .5),
@@ -1131,7 +1151,7 @@ body_cap9 <- fig_nums(name = "body_cap9", caption = "Phase Plane Analysis showin
 
 
 
-```{r Final, fig.cap=body_cap9, fig.show='hold', message=FALSE}
+```{r Final, fig.cap=body_cap9, fig.show='hold', message=FALSE, out.width="60%"}
 example4_flowField  <- flowField(WilsonCowan2,
                                  xlim = c(-0.01, .425),
                                  ylim = c(0, .5),
@@ -1161,10 +1181,12 @@ grid()
 
 The phase plane analysis illustrates a bounded steady-state solution that is classified as unstable; this is a typical feature of a limit cycle. The solution's oscillating behavior, shown in Figure 10, follows typical limit cycle behavior:
 
-<span class="lp6">i. </span> Trajectories near the equilibrium point are pushed further away from the equilibrium.
+<ol class="roundedlist2">
 
-<span class="lp6">ii. </span> Trajectories far from the equilibrium point move closer toward the equilibrium.
+1. Trajectories near the equilibrium point are pushed further away from the equilibrium.
+2. Trajectories far from the equilibrium point move closer toward the equilibrium.
 
+</ol>
 
 
 We established the resting state $E=0, I=0$ to be stable in the absence of an outside force. Therefore, the neural population only exhibits limit cycle activity in response to a constant external input (P or Q). All in all, the premise of Theorem 3 is that there is only one steady-state, and it must be near the inflection point for a limit cycle to exist. Therefore, if we study the limit behavior as a function of $P$, where $Q=0$, then it follows that: 
@@ -1181,12 +1203,12 @@ body_cap10 <- fig_nums(name = "body_cap10", caption = "$I(t)$ and $E(t)$ for lim
 
 
 
-```{r echo=FALSE, fig.cap=body_cap10, fig.show='hold', out.width=350 , message=FALSE, warning=FALSE}
+```{r echo=FALSE, fig.cap=body_cap10, fig.show='hold', out.width="60%", message=FALSE, warning=FALSE}
 
 example4_solution <- numericalSolution(WilsonCowan2,
                         y0 = c(0.0, 0.1),
                         type = "two",
-                        col=c(colpal2[2], colpal2[4]),
+                        col=c(colpal2[7], colpal2[10]),
                         add.legend = T,
                         xlab = TeX("$t$"),
                         ylab = c(TeX("$I$"), TeX("$E$")),

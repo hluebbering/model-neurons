@@ -1,7 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Roboto+Condensed:wght@300;400;700&family=Roboto:wght@300;400;500;700;900&family=Rubik:wght@400;600;900&family=Source+Serif+Pro:wght@300;400;600;700;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Vollkorn&display=swap');
-
+@import url("https://use.typekit.net/cre8fyv.css");
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&display=swap');
 
 body {
   font-family: "Times New Roman", Times, serif;
@@ -23,73 +24,68 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-h1 {
-  font-size: 1.3333333333333333em;
-}
-
 h2 {
-  font-size: 15pt;
-  /*font-family: 'Poppins';*/
-  font-weight: 500;
-  color: #333;
+  font-size: 20pt;
+  font-weight: 700;
 }
 
 h3 {
-  font-size: 13pt;
+  font-size: 16pt;
   font-weight: 500 !important;
 }
 h4 {
-  font-size: 12pt;
-  font-weight: 300 !important;
+  font-size: 13pt;
+  font-weight: 500 !important;
 }
 h5 {
   font-size: 12pt;
-  font-weight: 200 !important;
-}
-h6 {
-  font-size: 1.2222222222222223em;
+  font-weight: 300 !important;
 }
 
 b, strong {
   font-weight: 700;
   font-family: 'Frank Ruhl Libre';
-  font-size: 11.5pt;
+  font-size: 11pt;
 }
 
 .title {
-  /*margin-bottom: 0.333em;*/
-  font-family: 'Poppins', sans-serif;
+  margin-bottom: 0.01em;
+  font-family: 'Frank Ruhl Libre', serif;
   color: #292929;
-  font-size: 16pt !important;
+  font-size: 20pt !important;
   text-align: left;
-  margin-top: 60px;
+  font-weight: 900;
 }
 
 .author{
-  font-size: 11pt;
-  color: #555555db;
-  font-family: 'Poppins';
-  font-weight: 300;
+  font-size: 14pt;
+  margin-top: 0.2em;
+  margin-bottom: 0;
+  font-weight: normal !important;
+  font-family: 'Frank Ruhl Libre', serif;
 }
 
-.date {
-  font-size: 11pt;
-  color: #555555db;
-  font-family: 'Poppins';
-  font-weight: 300;
+.date{
+  font-size: 14pt;
+  margin-top: 0.2em;
+  margin-bottom: 0.75em;
+  font-weight: normal !important;
+  font-family: 'Frank Ruhl Libre', serif;
+}
+.subtitle{
+  font-size: 14pt;
+  margin-top: 0.2em;
+  margin-bottom: 0 !important;
+  font-weight: normal !important;
+  font-family: 'Frank Ruhl Libre', serif;
 }
 
-.subtitle {
-  font-size: 13pt;
-  color: #555555;
-  margin-top: 0;
-  font-family: 'Poppins';
-  font-weight: 400 !important;
+div#header {
+  margin-bottom: 15pt;
 }
+
 
 p {
-  /*margin: 0 0 0.5em;
-  margin: 0.5em 0 0.5em;*/
   line-height: 1.5;
   text-indent: 0;
 
@@ -105,8 +101,6 @@ p.caption {
   opacity: 1;
   margin-bottom: 1em;
   width: 90%;
-  /*font-weight: 300;
-  font-family: 'Frank Ruhl Libre';*/
   color: #757575;
 }
 
@@ -123,7 +117,7 @@ figcaption {
 }
 
 blockquote {
-  border-left: 5px solid #eb9fa9;
+  border-left: 5px solid #00b1d2;
   background: whitesmoke;
   box-shadow: 1px 1px 6px 0 darkgrey;
 }
@@ -132,6 +126,91 @@ blockquote p {
   font-size: 12pt;
   font-family: 'Roboto Condensed', sans-serif;
 }
+
+
+.navbar-brand {
+  font-family: source-sans-pro, sans-serif;
+  font-size: 9pt;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #535556 !important;
+}
+.navbar-default {
+    background-color: white;
+    box-shadow: 0 0.125rem 0.25rem rgb(0 0 0 / 11%);
+}
+
+mjx-container mjx-math {
+  white-space: normal;
+}
+
+
+
+.roundedlist ol {
+  list-style: none !important;
+  counter-reset: my-awesome-counter;
+  padding: 0 !important;
+}
+.roundedlist li {
+  counter-increment: my-awesome-counter;
+  margin: 0.25rem;
+}
+.roundedlist li::before {
+  content: counter(my-awesome-counter);
+  background: #00b1d2 !important;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 2rem;
+  color: white !important;
+  text-align: center;
+  margin-right: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  -webkit-print-color-adjust: exact;
+}
+/*.roundedlist ol ol li::before {
+  background: #DE51FF;
+}
+.roundedlist ol ol ol li::before {
+  background: #EE9EFF;
+}*/
+ol.roundedlist {
+  padding-left: 14pt;
+}
+
+
+
+.roundedlist2 ol {
+  list-style: none !important;
+  counter-reset: my-awesome-counter;
+  padding: 0 !important;
+}
+.roundedlist2 li {
+  counter-increment: my-awesome-counter;
+  margin: 0.25rem;
+}
+.roundedlist2 li::before {
+  content: counter(my-awesome-counter);
+  background: #1578a7 !important;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-block;
+  line-height: 2rem;
+  color: white !important;
+  text-align: center;
+  margin-right: 0.5rem;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 600;
+  -webkit-print-color-adjust: exact;
+}
+ol.roundedlist2 {
+  padding-left: 14pt;
+}
+
 
 .b1 {
   color: black;
@@ -145,234 +224,3 @@ blockquote p {
   padding: 12px;
 }
 
-.sp1 {
-  font-family: 'Trocchi', sans-serif;
-  color:#ACA4E2;
-  text-decoration: bold;
-  font-size:19px;
-  padding: 1px;
-  margin-left:-6px;
-}
-.sp2 {
-  font-family: 'Trocchi', sans-serif;
-  color:#abcdef;
-  text-decoration: bold;
-  font-size:19px;
-  padding: 1px;
-  margin-left:-6px;
-}
-.sp3 {
-  font-family: 'Trocchi', sans-serif;
-  color:#e7accf;
-  text-decoration: bold;
-  font-size:19px;
-  padding: 1px;
-  margin-left:-6px;
-}
-.sp4 {
-  font-family: 'Trocchi', sans-serif;
-  color:#008080;
-  text-decoration: bold;
-  font-size:19px;
-  padding: 1px;
-  margin-left:-6px;
-}
-.sp5 {
-  font-family: 'Trocchi', sans-serif;
-  color:#f1a7fe;
-  text-decoration: bold;
-  font-size:19px;
-  padding: 1px;
-  margin-left:-6px;
-}
-.sp6 {
-  font-family: 'Trocchi', sans-serif;
-  color:#ffcba4;
-  text-decoration: bold;
-  font-size:19px;
-  padding: 1px;
-  margin-left:-6px;
-}
-.sp7 {
-  font-family: 'Trocchi', sans-serif;
-  color:#fba0e3;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-.sp8 {
-  font-family: 'Trocchi', sans-serif;
-  color:#38BDBB;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-.sp9 {
-  font-family: 'Trocchi', sans-serif;
-  color:#5CBD92;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-.sp10 {
-  font-family: 'Trocchi', sans-serif;
-  color:#efbbcc;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-.sp11 {
-  font-family: 'Trocchi', sans-serif;
-  color:#967bb6;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-.sp12 {
-  font-family: 'Trocchi', sans-serif;
-  color:#B4EEB4;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-.sp13 {
-  font-family: 'Trocchi', sans-serif;
-  color:#ECD999;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-
-.sp14 {
-  font-family: 'Trocchi', sans-serif;
-  color:#F2F2F2;
-  text-decoration: bold;
-  font-size:19px;
-  padding:0;
-  margin-left:-6px;
-}
-
-.lp1 {
-  font-family: 'Trocchi', sans-serif;
-  color:#ACA4E2;
-  text-decoration: bold;
-  font-size:17px;
-  padding:1px;
-  margin-left: 12px;
-}
-.lp2 {
-  font-family: 'Trocchi', sans-serif;
-  color:#abcdef;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp3 {
-  font-family: 'Trocchi', sans-serif;
-  color:#e7accf;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp4 {
-  font-family: 'Trocchi', sans-serif;
-  color:#008080;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp5 {
-  font-family: 'Trocchi', sans-serif;
-  color:#f1a7fe;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp6 {
-  font-family: 'Trocchi', sans-serif;
-  color:#ffcba4;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp7 {
-  font-family: 'Trocchi', sans-serif;
-  color:#fba0e3;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp8 {
-  font-family: 'Trocchi', sans-serif;
-  color:#38BDBB;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp9 {
-  font-family: 'Trocchi', sans-serif;
-  color:#5CBD92;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp10 {
-  font-family: 'Trocchi', sans-serif;
-  color:#efbbcc;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp11 {
-  font-family: 'Trocchi', sans-serif;
-  color:#967bb6;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp12 {
-  font-family: 'Trocchi', sans-serif;
-  color:#B4EEB4;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-.lp13 {
-  font-family: 'Trocchi', sans-serif;
-  color:#ECD999;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-
-.lp14 {
-  font-family: 'Trocchi', sans-serif;
-  color:#F2F2F2;
-  text-decoration: bold;
-  font-size:17px;
-  padding: 1px;
-  margin-left: 12px;
-}
-
-/*img {
-  width: 100%;
-}*/

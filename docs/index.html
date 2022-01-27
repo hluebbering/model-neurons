@@ -39,6 +39,8 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -347,7 +349,12 @@ div.tocify {
         
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://hluebbering.github.io/">
+    <span class="fa fa-home"></span>
+     
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
@@ -367,6 +374,12 @@ div.tocify {
 
 <script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/auto-collapse.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/mathjax/MathJax-a11y/extensions/collapsible.js"></script>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+ "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+});
+</script>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>The Wilson-Cowan model depicts a neuron population composed of an excitatory and an inhibitory subpopulation. Both of these subgroups represent large-scale neurons that exhibit various oscillation patterns when fired. The following is a background summary of neuron composition and structure.</p>
@@ -374,21 +387,20 @@ div.tocify {
 <h3>Background</h3>
 <p>All cells have a charge difference across their entire membrane, and this difference generates potential energy of <span class="math inline">\(V\)</span>. In most cell types, the resting potential is resistant to chaos. However, in some cell types (like neurons), variations in the cell’s charge distribution can lead to large membrane potential changes. Such cells are called excitatory. Neurons use their excitable cell membranes to convey information. Each neuron cell contains a cell body called a somatic cell, a branching tree called a dendrite, and a single extension arm called an axon (Figure 1). Dendrites receive signals and integrate these signals into the body. When the incoming signals permit a response, a pulse generates in the soma’s transmembrane voltage. This pulse is called an action potential, and it diffuses down the cell’s axon and relays a signal to other neurons in the network.</p>
 <div class="figure" style="text-align: center">
-<img src="assets/images/axon.jpg" alt="Figure  1: Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon." width="400" />
+<img src="assets/images/axon.jpg" alt="Figure  1: Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon." width="60%" />
 <p class="caption">
 Figure 1: Projecting from each cell’s body, called its soma, is a tree of dendrites and a long axon. Dendrites receive the signals sent down the axon.
 </p>
 </div>
 <p>The dendrites are an essential feature in coupling synaptic inputs and managing action potentials. The branch density and patterns of the dendrites (Figure 2) correlate to the neuron’s function. In addition to a dendrite’s unique morphology, dendritic branching is a reoccurring process where neurons form new dendritic trees and branches, which allow them to build new synapses.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-6-1.png" alt="Figure  2: A Single Neuron. Dendrites are branched extensions that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites." width="400" />
+<img src="index_files/figure-html/unnamed-chunk-6-1.png" alt="Figure  2: A Single Neuron. Dendrites are branched extensions that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites." width="50%" />
 <p class="caption">
 Figure 2: A Single Neuron. Dendrites are branched extensions that can produce electrochemical simulations. The synapses distributed throughout the tree transmit electrical signals to the dendrites.
 </p>
 </div>
-</div>
-<div id="synaptic-transmission" class="section level3">
-<h3>Synaptic transmission</h3>
+<div id="synaptic-transmission" class="section level4">
+<h4>Synaptic transmission</h4>
 <p>Postsynaptic Potentials, also called gradient potentials, are changes in the membrane potential of a chemical synapse. These potentials trigger or inhibit action potentials. Chemically-gated ion channels open on postsynaptic membranes, where sodium and potassium ions diffuse in the opposite directions. Postsynaptic receptors, located at chemical synapses, open ion channels and convert chemical signals into electrical signals. The following model describes the dynamics for the potential <span class="math inline">\(\mathrm{V}\left(t\right)\)</span> between the inside of the cell and outside of the cell for the membrane current <span class="math inline">\(\mathrm{I}\left(t\right)\)</span>.</p>
 <p><span class="math display">\[
 \begin{align}
@@ -398,7 +410,7 @@ Figure 2: A Single Neuron. Dendrites are branched extensions that can produce el
 \]</span></p>
 <p>When an action potential reaches the axon, it activates calcium channels to induce an inrush of <span class="math inline">\(\mathrm{Ca}^{2+}\)</span> across the neuron cell’s membrane (Figure 4). These calcium ions cause the release of signaling molecules called neurotransmitters that disperse through the synaptic cleft and attach to receptors on a cell’s dendrites. The distance between the signaling cell’s axon and the postsynaptic dendrite is the synaptic cleft. Neurotransmitter receptors on postsynaptic cells are converted into ion channels. When an electrical gradient triggers these neurotransmitter receptors, the receptor channel complexes cause the target cell’s membrane excitation. In order to activate a sufficient number of these excitatory receptors, the action potential is activated in the cell and transmitted down its axon to the next cell.</p>
 <div class="figure" style="text-align: center">
-<img src="assets/images/ganglion.jpg" alt="Figure  3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside." width="400" />
+<img src="assets/images/ganglion.jpg" alt="Figure  3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside." width="50%" />
 <p class="caption">
 Figure 3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside.
 </p>
@@ -406,17 +418,28 @@ Figure 3: The myelin space on the axon has high-concentration ion channels, allo
 <p>In contrast, there are receptor channel complexes with inhibitory effects, in which ions flowing through the channel help restore the system to its resting potential. The assembly of these excitatory and inhibitory signals in the cell body allows various signaling behaviors. Additional diversity is exhibited by the receptor-channels’ dynamic actions, which can respond to signals at different times and for different durations.</p>
 <p>Positive ion current directed from inside to outside defines a neuron’s membrane current. Depending on how they affect the membrane potential, chemical synapses are either excitatory or inhibitory. The types and functions of these <strong>excitatory and inhibitory</strong> cells are the main topics we cover in this study. In the following, we further study these excitatory and inhibitory effects by analyzing Wilson and Cowan’s dynamic, two-system equation, modeling the two neuronal populations.</p>
 <div class="figure" style="text-align: center">
-<img src="assets/images/axon2.jpg" alt="Figure  4: When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents." width="400" />
+<img src="assets/images/axon2.jpg" alt="Figure  4: When an action potential reaches the axon's edge, it triggers an inrush of calcium, causing neurotransmitters' release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents." width="70%" />
 <p class="caption">
 Figure 4: When an action potential reaches the axon’s edge, it triggers an inrush of calcium, causing neurotransmitters’ release into the synaptic cleft. The neurotransmitters diffuse through the postsynaptic cell membrane and activate receptors, causing inward sodium currents.
 </p>
 </div>
 </div>
+</div>
 <div id="thesis-and-preview" class="section level3">
 <h3>Thesis and Preview</h3>
 <p>The Wilson-Cowan model represents the dynamics between the spatially confined excitatory and inhibitory subpopulations. Here, <span class="math inline">\(E(t)\)</span> and <span class="math inline">\(I(t)\)</span> denote the excitatory and inhibitory population’s instantaneous discharge rate at time <span class="math inline">\(t\)</span>, respectively.</p>
-<p><span class="sp2">a.</span> <strong>Logistic Population Dynamics:</strong> The logistic growth model is commonly used in biology to model a population’s growth under density dependence. The study assumes that the resting threshold <span class="math inline">\(\theta\)</span> is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function <span class="math inline">\(\mathcal{S}(x)\)</span> is related to the distribution of synapses.</p>
-<p><span class="sp3">b.</span> <strong>Phase Plane Analysis, Steady-State Solutions, and Limit Cycles:</strong> Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We define a stimulus configuration as any choice of constant values for external inputs <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> and investigate necessary dynamical behavior based on relationships between the couplings <span class="math inline">\(c_1, c_2, c_3, c_4\)</span> and the sigmoid response parameters <span class="math inline">\(a_e, a_i\)</span> and <span class="math inline">\(\theta_e, \theta_i\)</span>.</p>
+<blockquote>
+<ol style="list-style-type: lower-alpha">
+<li>Logistic Population Dynamics</li>
+</ol>
+</blockquote>
+<p>The logistic growth model is commonly used in biology to model a population’s growth under density dependence. The study assumes that the resting threshold <span class="math inline">\(\theta\)</span> is the same for all cells in the population. Hence, it holds that the sigmoid, logistic, response function <span class="math inline">\(\mathcal{S}(x)\)</span> is related to the distribution of synapses.</p>
+<blockquote>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Phase Plane Analysis, Steady-State Solutions, and Limit Cycles</li>
+</ol>
+</blockquote>
+<p>Depending on the parameter values chosen, there may be either one, three, or five steady-state solutions to the system of equations. We define a stimulus configuration as any choice of constant values for external inputs <span class="math inline">\(P\)</span> and <span class="math inline">\(Q\)</span> and investigate necessary dynamical behavior based on relationships between the couplings <span class="math inline">\(c_1, c_2, c_3, c_4\)</span> and the sigmoid response parameters <span class="math inline">\(a_e, a_i\)</span> and <span class="math inline">\(\theta_e, \theta_i\)</span>.</p>
 <hr />
 </div>
 </div>
@@ -435,21 +458,25 @@ Figure 4: When an action potential reaches the axon’s edge, it triggers an inr
 \]</span></p>
 <p>Now, we have the equations <span class="math inline">\(E(t)\)</span> and <span class="math inline">\(I(t)\)</span>. We assume that the value of these functions at time <span class="math inline">\((t+\tau)\)</span> will be equal to the proportion of cells, receiving at least threshold excitement at time <span class="math inline">\(t\)</span>, that isn’t sensitive (not refractory).</p>
 <p><strong>Neuron Assumptions.</strong> We are concerned with the behavior of the subpopulations rather than individual cells. Under the following assumptions, we may ignore random spatial interactions:</p>
+<ol class="roundedlist">
 <ol style="list-style-type: decimal">
 <li>Assume that the cells containing the two populations are very close in space.</li>
 <li>Interconnections are arbitrary yet dense enough so that it is likely there’s at least one path connecting any two cells in the population.</li>
 <li>Neural processes depend on the interaction of excitatory and inhibitory cells.</li>
+</ol>
 </ol>
 <p> </p>
 </div>
 <div id="support-material" class="section level3">
 <h3>Support Material</h3>
 <div id="proportion-of-sensitive-cells-in-a-sub-population" class="section level4">
-<h4><span class="sp2">1.</span> Proportion of Sensitive Cells in a Sub-population</h4>
+<h4>1. Proportion of Sensitive Cells in a Sub-population</h4>
 <p>First, the study obtained the independent expression of the proportion of sensitive cells and the proportion of cells that received at least a threshold stimulation. Relevant biologic assumptions assess when a neuron fires. Consequently, the most simple model must fulfill two <strong>conditions</strong>:</p>
+<ol class="roundedlist2">
 <ol style="list-style-type: decimal">
 <li>The neuron should not be in its “refractory period,” meaning it can’t fire again immediately after having fired.</li>
 <li>Neurons need to receive enough input in a short time.</li>
+</ol>
 </ol>
 <p>If the total refractory period has a duration of <span class="math inline">\(r\)</span> at time <span class="math inline">\(t\)</span>, then the proportion of excitatory cells that are refractory will be given by the following:</p>
 <p><span class="math display">\[
@@ -469,7 +496,7 @@ S(x) = \dfrac{1}{1 + e^{-a (x - \theta)}} \tag{5}
 \]</span></p>
 <p>The response function is sigmoidal if <span class="math inline">\(S(x)\)</span> monotonically increases on the interval (-<span class="math inline">\(\infty\)</span>, +<span class="math inline">\(\infty\)</span>), approaches the asymptotic states zero and one as <span class="math inline">\(x\)</span> approaches –<span class="math inline">\(\infty\)</span> and +<span class="math inline">\(\infty\)</span> respectively, and has one inflection point.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-13-1.png" alt="Figure  5: Sigmoid Subpopulation Response Function, with $\theta=5$ and $a=1$." width="500" />
+<img src="index_files/figure-html/unnamed-chunk-13-1.png" alt="Figure  5: Sigmoid Subpopulation Response Function, with $\theta=5$ and $a=1$." width="60%" />
 <p class="caption">
 Figure 5: Sigmoid Subpopulation Response Function, with <span class="math inline">\(\theta=5\)</span> and <span class="math inline">\(a=1\)</span>.
 </p>
@@ -478,7 +505,7 @@ Figure 5: Sigmoid Subpopulation Response Function, with <span class="math inline
 <p><span class="math display">\[c_1 E(t) - c_2 I(t) + P(t)\]</span></p>
 <p>We call <span class="math inline">\(S_e\)</span> the response function, also called the input-frequency characteristic of the excitatory neurons, and correspondingly <span class="math inline">\(S_i\)</span> for the inhibitory ones. A spike can still help eliciting a new spike in a downstream neuron even a few milliseconds later. The response functions give the expected proportion of those receiving at least threshold stimulation as a function of the population’s average excitation levels. The sigmoid, nonlinear functions <span class="math inline">\(S_e\)</span>, and <span class="math inline">\(S_i\)</span> take the form:</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-15-1.png" alt="Figure  3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside." width="500" />
+<img src="index_files/figure-html/unnamed-chunk-15-1.png" alt="Figure  3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside." width="60%" />
 <p class="caption">
 Figure 3: The myelin space on the axon has high-concentration ion channels, allowing nodes to regenerate the action potential. Positive ion current is directed from inside to outside.
 </p>
@@ -486,7 +513,7 @@ Figure 3: The myelin space on the axon has high-concentration ion channels, allo
 <p> </p>
 </div>
 <div id="subpopulation-response-functions" class="section level4">
-<h4><span class="sp3">2.</span> Subpopulation Response Functions</h4>
+<h4>2. Subpopulation Response Functions</h4>
 <p>If all cells receive same number of excitatory and inhibitory afferents, then the subpopulation response function <span class="math inline">\(S(x)\)</span> will take the form:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -504,7 +531,7 @@ Figure 3: The myelin space on the axon has high-concentration ion channels, allo
 <p> </p>
 </div>
 <div id="average-level-of-excitation" class="section level4">
-<h4><span class="sp4">3.</span> Average Level of Excitation</h4>
+<h4>3. Average Level of Excitation</h4>
 <p>The inhibitory potential is when hyperpolarization brings about a net negative charge, so the potential is further away from zero. The excitation potential occurs during the depolarization process, so the potential is closer to the excitation threshold. Here is an expression for the average level of excitation generated in the cell at time <span class="math inline">\(t\)</span>:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -582,7 +609,7 @@ external input to inhibitory cells
 <p> </p>
 <p>The different coefficients reflect the difference in axon and dendritic geometry between excitatory and inhibitory cell types. In contrast, variations in external inputs assume the existence of cell types specific to the population. We can illustrate the diversity in axon and dendritic geometry between excitatory and inhibitory cell types by drawing several neurons, as shown below.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-20-1.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-20-2.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-20-3.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" /><img src="index_files/figure-html/unnamed-chunk-20-4.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="250" />
+<img src="index_files/figure-html/unnamed-chunk-20-1.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="25%" /><img src="index_files/figure-html/unnamed-chunk-20-2.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="25%" /><img src="index_files/figure-html/unnamed-chunk-20-3.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="25%" /><img src="index_files/figure-html/unnamed-chunk-20-4.png" alt="Figure  6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types." width="25%" />
 <p class="caption">
 Figure 6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate the diversity in axonal and dendritic geometry between excitatory and inhibitory cell types.
 </p>
@@ -591,11 +618,11 @@ Figure 6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate t
 <p> </p>
 </div>
 <div id="equations-for-the-activities-et-and-it" class="section level4">
-<h4><span class="sp5">4.</span> Equations for the activities E(t) and I(t)</h4>
+<h4>4. Equations for the activities E(t) and I(t)</h4>
 <p>Suppose the probability that a cell is sensitive is independent of the probability that a cell is excited above the threshold. In that case, we can define the excitatory subpopulation as the following equation:</p>
 <p><span class="math display">\[
 \begin{align*}
-\left[{1-\int^t_{t-r}E(t^\prime) \; dt^\prime}\right]
+\left[{1-\int^t_{t-r}E(t^\prime) dt^\prime}\right]
 \mathcal{S}_e(x) \delta t
 \tag{8}
 \end{align*}
@@ -615,24 +642,26 @@ Figure 6: Axonal and Dendritic geometry. Plot of Several Neurons to illustrate t
 <p> </p>
 </div>
 <div id="dynamics-of-a-localized-population-of-neurons" class="section level4">
-<h4><span class="sp6">5.</span> Dynamics of a Localized Population of Neurons</h4>
+<h4>5. Dynamics of a Localized Population of Neurons</h4>
 <p>It follows that the equations governing the dynamics of a localized population of neurons take the form of the following expressions:</p>
 <p><span class="math display">\[
 \small
-\begin{align*}
-\mathbf{E}(t+\tau) \equiv&amp; {\left[ 1-\int^t_{t-r}E(t^\prime) \, dt^\prime \right ]} \\
+\begin{align}
+\mathbf{E}(t+\tau) \equiv&amp; {\left[ 1-\int^t_{t-r}E(t^\prime) dt^\prime \right ]} \\
 &amp; \cdot \, \mathcal{S}_e
-\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] dt^\prime \right\}, 
-\tag{10} 
-\end{align*}
+\left\{ \int^t_{-\infty} \alpha(t-t^\prime) 
+[c_1 E(t^\prime) - c_2 I(t^\prime) + P(t^\prime)] dt^\prime \right\}, 
+\end{align}\tag{10}
 \]</span></p>
 <p><span class="math display">\[
 \small
 \begin{align}
-\mathbf{I}(t+\tau^\mathrm{\prime}) \equiv&amp; {\left[ 1-\int^t_{t-r^\mathrm{\prime}}I(t^\prime) \; dt^\prime \right ]} \\
+\mathbf{I}(t+\tau^{\prime}) \equiv &amp; 
+{\left[ 1 - \int^{t}_{t-r^{\prime}} I(t^\prime) dt^\prime \right ]} \\
 &amp; \cdot \, \mathcal{S}_i
-\left\{ \int^t_{-\infty} \alpha(t-t^\prime) [c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] dt^\prime  \right\} , \tag{11} 
-\end{align}
+\left\{ \int^t_{-\infty} \alpha(t - t^\prime) 
+[c_3 E(t^\prime) - c_4 I(t^\prime) + Q(t^\prime)] dt^\prime  \right\}
+\end{align}\tag{11}
 \]</span></p>
 <p>for the excitatory and inhibitory subpopulations. The parameters <span class="math inline">\(\tau\)</span> and <span class="math inline">\(\tau^{\prime}\)</span> represent the response delays, after which cells at time <span class="math inline">\(t\)</span> will be firing.</p>
 <table class="table table-striped table-hover lightable-paper" style="font-size: 10px; font-family: Frank-Ruhl-Libre; width: auto !important; margin-left: auto; margin-right: auto; font-family: &quot;Arial Narrow&quot;, arial, helvetica, sans-serif; margin-left: auto; margin-right: auto;">
@@ -697,7 +726,7 @@ stimulation decay function
 <p> </p>
 </div>
 <div id="time-coarse-graining" class="section level4">
-<h4><span class="sp7">6.</span> Time Coarse Graining</h4>
+<h4>6. Time Coarse Graining</h4>
 <p>We are interested in the coarse-grained transitory behavior of the neural activity. Coarse-grained modeling aims to simulate the behavior of complex systems using simplified representations. In the above equation, we can get rid of the integral and multiply the stimulus by a constant describing the length of time influence. Consider the following application of time course-graining of equation E(t):</p>
 <p><span class="math display">\[
 \small
@@ -1016,7 +1045,7 @@ describes location of max slope for inhibitory subpopulation response function
 <h3>Flow Field and Nullclines</h3>
 <p>In the following, we define the couplings as <span class="math inline">\(c_1 = 12, c_2 = 4, c_3 = 13, c_4 = 11\)</span>; the refractory periods as <span class="math inline">\(r_e = 1, r_i = 1\)</span>; and the external inputs as <span class="math inline">\(P = 0, Q = 0\)</span>. In our numerical search of the steady-state points, we study the cases where the derivatives of <span class="math inline">\(E\)</span> and <span class="math inline">\(I\)</span> are zero. Since the system is highly nonlinear, we have to do it numerically. First, we draw the flow field and then draw the nullclines of the system. The <span class="math inline">\(x\)</span>-nullclines are defined by <span class="math inline">\(f(x,y)=0\)</span>, and the <span class="math inline">\(y\)</span>-nullclines are defined by <span class="math inline">\(g(x, y)=0\)</span>. These are the locations where <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> do not change with time.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/Nullclines-1.png" alt="Figure  7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="300" /><img src="index_files/figure-html/Nullclines-2.png" alt="Figure  7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="300" />
+<img src="index_files/figure-html/Nullclines-1.png" alt="Figure  7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="45%" /><img src="index_files/figure-html/Nullclines-2.png" alt="Figure  7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="45%" />
 <p class="caption">
 Figure 7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Parameters:<span class="math inline">\(c_1=12\)</span>, <span class="math inline">\(c_2 = 4\)</span>, <span class="math inline">\(c_3= 13\)</span>, <span class="math inline">\(c_4=11\)</span>, <span class="math inline">\(a_e=1.2\)</span>, <span class="math inline">\(\theta_e=2.8\)</span>, <span class="math inline">\(a_i= 1\)</span>, <span class="math inline">\(\theta_i = 4\)</span>, <span class="math inline">\(r_e =1\)</span>, <span class="math inline">\(r_i=1\)</span>, <span class="math inline">\(P=0\)</span>, and <span class="math inline">\(Q=0\)</span>.
 </p>
@@ -1033,7 +1062,7 @@ Figure 7: Flow Field and Nullclines for the Wilson-Cowan System of Equations. Pa
 <p><span class="math display">\[c_1&gt;9/a_e \tag{16}\]</span></p>
 <p>then there is a class of stimulus configurations where the nullcline equations <span class="math inline">\(14\)</span> and <span class="math inline">\(15\)</span> will have at least three intersections. In other words, the equations <span class="math inline">\(12\)</span> and <span class="math inline">\(13\)</span> will have at least three steady-state solutions. Here, <span class="math inline">\(a_e\)</span> is the slope parameter for the excitatory response function. To simplify obtaining the result of Condition 16, we set the refractory period of <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> to be equal. Without losing any meaning, we use the values of <span class="math inline">\(r_e\)</span> and <span class="math inline">\(r_i\)</span> in the rest of the study.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-27-1.png" alt="Figure  8: Plot of the Equilibrium Points (Steady State solutions) satisfying Theorm 1. Dashed lines are isoclines. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="400" />
+<img src="index_files/figure-html/unnamed-chunk-27-1.png" alt="Figure  8: Plot of the Equilibrium Points (Steady State solutions) satisfying Theorm 1. Dashed lines are isoclines. Parameters:$c_1=12$, $c_2 = 4$, $c_3= 13$, $c_4=11$, $a_e=1.2$, $\theta_e=2.8$, $a_i= 1$, $\theta_i = 4$, $r_e =1$, $r_i=1$, $P=0$, and $Q=0$." width="60%" />
 <p class="caption">
 Figure 8: Plot of the Equilibrium Points (Steady State solutions) satisfying Theorm 1. Dashed lines are isoclines. Parameters:<span class="math inline">\(c_1=12\)</span>, <span class="math inline">\(c_2 = 4\)</span>, <span class="math inline">\(c_3= 13\)</span>, <span class="math inline">\(c_4=11\)</span>, <span class="math inline">\(a_e=1.2\)</span>, <span class="math inline">\(\theta_e=2.8\)</span>, <span class="math inline">\(a_i= 1\)</span>, <span class="math inline">\(\theta_i = 4\)</span>, <span class="math inline">\(r_e =1\)</span>, <span class="math inline">\(r_i=1\)</span>, <span class="math inline">\(P=0\)</span>, and <span class="math inline">\(Q=0\)</span>.
 </p>
@@ -1048,7 +1077,7 @@ Figure 8: Plot of the Equilibrium Points (Steady State solutions) satisfying The
 \]</span></p>
 <p>Then, there will be five steady states for a particular choice of stimulus configuration, though not simultaneously. This theorem is not sufficient to solve multiple hysteresis.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/PhaseAnalysis-1.png" alt="Figure  9: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: $c_1=13$, $c_2=4$, $c_3=22$, $c_4=2$, $a_e=1.5$, $\theta_e=2.5$, $a_i=6$, $\theta_i=4.3$, $r_e=1$, and $r_i=1$." width="400" />
+<img src="index_files/figure-html/PhaseAnalysis-1.png" alt="Figure  9: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: $c_1=13$, $c_2=4$, $c_3=22$, $c_4=2$, $a_e=1.5$, $\theta_e=2.5$, $a_i=6$, $\theta_i=4.3$, $r_e=1$, and $r_i=1$." width="60%" />
 <p class="caption">
 Figure 9: Phase plane and isoclines with parameters chosen to give three stable and two unstable steady states. Parameters: <span class="math inline">\(c_1=13\)</span>, <span class="math inline">\(c_2=4\)</span>, <span class="math inline">\(c_3=22\)</span>, <span class="math inline">\(c_4=2\)</span>, <span class="math inline">\(a_e=1.5\)</span>, <span class="math inline">\(\theta_e=2.5\)</span>, <span class="math inline">\(a_i=6\)</span>, <span class="math inline">\(\theta_i=4.3\)</span>, <span class="math inline">\(r_e=1\)</span>, and <span class="math inline">\(r_i=1\)</span>.
 </p>
@@ -1073,21 +1102,25 @@ c_1a_e \gt c_4 a_i + 18 \tag{18}
 <h4>Limit Cycles</h4>
 <p>Non-linear systems can exhibit a type of behavior known as a limit cycle. If there is only one steady-state solution, and if the steady-state solution is unstable, a limit cycle will occur. In the following, we define the parameters for satisfying conditions 18 and 20 as <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span> and <span class="math inline">\(r_i=1\)</span>. We can determine a steady-state solution by the intersection of the nullclines as follows.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-34-1.png" alt="Figure  10: Phase Plane Analysis. Determine the steady-state solution by the nullclines' intersection. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="400" />
+<img src="index_files/figure-html/unnamed-chunk-34-1.png" alt="Figure  10: Phase Plane Analysis. Determine the steady-state solution by the nullclines' intersection. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="60%" />
 <p class="caption">
 Figure 10: Phase Plane Analysis. Determine the steady-state solution by the nullclines’ intersection. Parameters: <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span>, <span class="math inline">\(r_i=1\)</span>.
 </p>
 </div>
 <p>In the phase plane, the limit cycle is an isolated closed orbit, where “closed” means the periodicity of movement, and “isolated” means the limit of motion, where nearby trajectories converge or deviate. We can alter our initial values of <span class="math inline">\(E_0\)</span> and <span class="math inline">\(I_0\)</span> to obtain different paths in the phase space.</p>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/Final-1.png" alt="Figure  11: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation $P=1.25$. Dashed lines are nullclines. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="400" />
+<img src="index_files/figure-html/Final-1.png" alt="Figure  11: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation $P=1.25$. Dashed lines are nullclines. Parameters: $c_1=16$, $c_2 = 12$, $c_3=15$, $c_4=3$, $a_e = 1.3$, $\theta_e=4$, $a_i=2$, $\theta_i = 3.7$, $r_e=1$, $r_i=1$." width="60%" />
 <p class="caption">
 Figure 11: Phase Plane Analysis showing limit cycle trajectory in response to constant simulation <span class="math inline">\(P=1.25\)</span>. Dashed lines are nullclines. Parameters: <span class="math inline">\(c_1=16\)</span>, <span class="math inline">\(c_2 = 12\)</span>, <span class="math inline">\(c_3=15\)</span>, <span class="math inline">\(c_4=3\)</span>, <span class="math inline">\(a_e = 1.3\)</span>, <span class="math inline">\(\theta_e=4\)</span>, <span class="math inline">\(a_i=2\)</span>, <span class="math inline">\(\theta_i = 3.7\)</span>, <span class="math inline">\(r_e=1\)</span>, <span class="math inline">\(r_i=1\)</span>.
 </p>
 </div>
 <p>The phase plane analysis illustrates a bounded steady-state solution that is classified as unstable; this is a typical feature of a limit cycle. The solution’s oscillating behavior, shown in Figure 10, follows typical limit cycle behavior:</p>
-<p><span class="lp6">i. </span> Trajectories near the equilibrium point are pushed further away from the equilibrium.</p>
-<p><span class="lp6">ii. </span> Trajectories far from the equilibrium point move closer toward the equilibrium.</p>
+<ol class="roundedlist2">
+<ol style="list-style-type: decimal">
+<li>Trajectories near the equilibrium point are pushed further away from the equilibrium.</li>
+<li>Trajectories far from the equilibrium point move closer toward the equilibrium.</li>
+</ol>
+</ol>
 <p>We established the resting state <span class="math inline">\(E=0, I=0\)</span> to be stable in the absence of an outside force. Therefore, the neural population only exhibits limit cycle activity in response to a constant external input (P or Q). All in all, the premise of Theorem 3 is that there is only one steady-state, and it must be near the inflection point for a limit cycle to exist. Therefore, if we study the limit behavior as a function of <span class="math inline">\(P\)</span>, where <span class="math inline">\(Q=0\)</span>, then it follows that:</p>
 <ul>
 <li>There is a threshold value of P, and below this threshold, the limit cycle activity cannot occur.</li>
@@ -1095,7 +1128,7 @@ Figure 11: Phase Plane Analysis showing limit cycle trajectory in response to co
 <li>Within the range defined above, both the limit cycle frequency and the average value of <span class="math inline">\(E(t)\)</span> increases monotonically with respect to <span class="math inline">\(P\)</span>.</li>
 </ul>
 <div class="figure" style="text-align: center">
-<img src="index_files/figure-html/unnamed-chunk-37-1.png" alt="Figure  12: $I(t)$ and $E(t)$ for limit cycle shown in Fig. 9. The limit cycle depends on the value of $P$, i.e. $Q$ being set equal to zero." width="350" />
+<img src="index_files/figure-html/unnamed-chunk-37-1.png" alt="Figure  12: $I(t)$ and $E(t)$ for limit cycle shown in Fig. 9. The limit cycle depends on the value of $P$, i.e. $Q$ being set equal to zero." width="60%" />
 <p class="caption">
 Figure 12: <span class="math inline">\(I(t)\)</span> and <span class="math inline">\(E(t)\)</span> for limit cycle shown in Fig. 9. The limit cycle depends on the value of <span class="math inline">\(P\)</span>, i.e. <span class="math inline">\(Q\)</span> being set equal to zero.
 </p>
